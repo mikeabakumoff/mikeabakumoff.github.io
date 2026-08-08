@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Михаил — Автоматизация бизнеса</title>
+<title>AweLabs — Business Automation | Mikhail Abakumov</title>
+<meta name="description" content="AweLabs — automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@300;400;600&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -28,6 +29,7 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
 }
+[hidden] { display: none !important; }
 
 /* NOISE OVERLAY */
 body::before {
@@ -60,9 +62,56 @@ body::after {
   z-index: 1;
 }
 
+/* TOPBAR / LANGUAGE SWITCH */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(10,10,11,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--text);
+  text-decoration: none;
+}
+.brand span { color: var(--accent); }
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lang-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 0;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s;
+}
+.lang-btn:hover { color: var(--text); }
+.lang-btn[aria-pressed="true"] { background: var(--accent); color: #0a0a0b; }
+
 /* HERO */
 .hero {
-  padding: 100px 0 80px;
+  padding: 80px 0 80px;
   position: relative;
 }
 .hero-label {
@@ -215,6 +264,7 @@ body::after {
 .ic-teal { background: rgba(29,158,117,0.12); border: 1px solid rgba(29,158,117,0.2); }
 .ic-amber { background: rgba(186,117,23,0.12); border: 1px solid rgba(186,117,23,0.2); }
 .ic-coral { background: rgba(216,90,48,0.12); border: 1px solid rgba(216,90,48,0.2); }
+.ic-violet { background: rgba(139,109,221,0.12); border: 1px solid rgba(139,109,221,0.2); }
 .case-meta {}
 .case-title {
   font-family: 'Unbounded', sans-serif;
@@ -265,6 +315,7 @@ body::after {
 .d-teal { background: #1D9E75; }
 .d-amber { background: #BA7517; }
 .d-coral { background: #D85A30; }
+.d-violet { background: #8B6DDD; }
 .results {
   display: flex;
   gap: 8px;
@@ -281,6 +332,37 @@ body::after {
 .b-teal { background: rgba(29,158,117,0.1); color: #5DCAA5; border: 1px solid rgba(29,158,117,0.15); }
 .b-amber { background: rgba(186,117,23,0.1); color: #EF9F27; border: 1px solid rgba(186,117,23,0.15); }
 .b-coral { background: rgba(216,90,48,0.1); color: #F0997B; border: 1px solid rgba(216,90,48,0.15); }
+.b-violet { background: rgba(139,109,221,0.1); color: #B7A3F0; border: 1px solid rgba(139,109,221,0.15); }
+
+/* CASE LINKS */
+.case-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.case-link:hover { border-color: var(--accent); color: var(--accent); }
+.case-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.65;
+}
+
 .tags {
   display: flex;
   gap: 6px;
@@ -359,6 +441,27 @@ body::after {
   font-weight: 500;
 }
 
+.section-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* BRAND TAGLINE UNDER HERO */
+.hero-tagline {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.6s;
+}
+.hero-tagline b { color: var(--text); font-weight: 500; }
+
 /* STACK */
 .stack-grid {
   display: grid;
@@ -426,6 +529,15 @@ body::after {
   transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
 .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.contact-link-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0a0a0b;
+  font-weight: 500;
+}
+.contact-link-primary:hover { color: #0a0a0b; border-color: var(--accent); opacity: 0.9; }
+/* the address is assembled by script; keep the slot from collapsing before that */
+.js-mail:empty, .mail-text:empty { min-width: 1px; }
 
 /* FOOTER */
 footer {
@@ -447,10 +559,11 @@ footer {
 .case-card:nth-child(2) { animation-delay: 0.2s; }
 .case-card:nth-child(3) { animation-delay: 0.3s; }
 .case-card:nth-child(4) { animation-delay: 0.4s; }
+.case-card:nth-child(5) { animation-delay: 0.5s; }
 
 /* MOBILE */
 @media (max-width: 600px) {
-  .hero { padding: 60px 0 40px; }
+  .hero { padding: 48px 0 40px; }
   .case-solutions { grid-template-columns: 1fr; }
   .hero-stats { gap: 24px; }
   .contact-block { padding: 28px 20px; }
@@ -458,6 +571,344 @@ footer {
 </style>
 </head>
 <body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#">Awe<span>Labs</span></a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" class="lang-btn" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-set-lang="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
+<div data-lang="en">
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">// business automation, end to end</div>
+    <h1>Mikhail builds<br><span>automation</span><br>for your business</h1>
+    <p class="hero-desc">Telegram bots, AI integrations and CRM automation. I cut manual work down to a minimum — only the solutions that save time and make money.</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">17<span>+</span></div>
+        <div class="stat-label">years in IT</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">case studies</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8</div>
+        <div class="stat-label">public repos on GitHub</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="https://t.me/awe_labs" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
+        Message on Telegram
+      </a>
+      <a href="#cases-en" class="btn-secondary">See case studies →</a>
+    </div>
+    <p class="hero-tagline"><b>AweLabs</b> — automation studio by Mikhail Abakumov</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- COMPANIES -->
+  <section id="experience-en">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Worked with</h2>
+    </div>
+    <div class="companies-grid">
+      <div class="company-card">
+        <div class="company-name">Samokat</div>
+        <div class="company-role">Senior Technical Support Engineer · 2022–2025</div>
+        <div class="company-desc">Grocery delivery. Supported 2,000+ staff, led 6 engineers across regions, worked in Jira</div>
+      </div>
+      <div class="company-card">
+        <div class="company-name">SOKOLOV</div>
+        <div class="company-role">Technical Support Specialist · 2021–2022</div>
+        <div class="company-desc">Jewellery retail chain. Store-level support through a ticketing system</div>
+      </div>
+      <div class="company-card">
+        <div class="company-name">Svyaznoy</div>
+        <div class="company-role">Retail &amp; Banking Equipment Engineer · 2019–2021</div>
+        <div class="company-desc">Electronics retail chain. Diagnostics and repair of PCs, payment terminals and fiscal registers</div>
+      </div>
+      <div class="company-card">
+        <div class="company-name">ICL</div>
+        <div class="company-role">Local Support Engineer · 2021</div>
+        <div class="company-desc">IT services. Retail and banking hardware, networks, POS equipment, parcel lockers</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CASES -->
+  <section id="cases-en">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Case studies</h2>
+    </div>
+    <div class="cases">
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-icon ic-blue">🤖</div>
+          <div class="case-meta">
+            <div class="case-title">AI auto-responder for a real estate agency</div>
+            <div class="case-sub">Classifieds × GPT-4o × Telegram</div>
+          </div>
+        </div>
+        <div class="case-problem">A real estate agency in Pattaya was receiving enquiries through a classifieds platform, but managers could not answer fast enough — leads went cold and clients went to competitors.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-blue"></span>GPT-4o runs the conversation to a script: dates, budget, type of property</div>
+          <div class="sol"><span class="sol-dot d-blue"></span>A hot lead triggers an instant Telegram notification to the manager</div>
+          <div class="sol"><span class="sol-dot d-blue"></span>Follow-up after 12 hours if the client left no contact details</div>
+          <div class="sol"><span class="sol-dot d-blue"></span>Daily report: how many leads are still waiting for a reply</div>
+        </div>
+        <div class="results">
+          <span class="badge b-blue">0 missed leads</span>
+          <span class="badge b-blue">Reply in &lt;30 sec</span>
+          <span class="badge b-blue">Managers see only hot leads</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/awelabs-realty-bot" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Code on GitHub
+          </a>
+          <span class="case-note">related project — same architecture, different client</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Classifieds API</span><span class="tag">GPT-4o-mini</span><span class="tag">Telegram Bot</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-icon ic-teal">⚡</div>
+          <div class="case-meta">
+            <div class="case-title">Smart lead qualifier for an IT specialist</div>
+            <div class="case-sub">Classifieds × GPT-4o × sales funnel</div>
+          </div>
+        </div>
+        <div class="case-problem">Too many off-target enquiries: people write about the wrong thing, haggle below the rate card and eat up time. A filter was needed before any live contact.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-teal"></span>The bot establishes the task before handing over any contact details</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Checks the budget — filters out off-target requests automatically</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Holds the rate card firmly and does not haggle</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Daily stats: messages, replies, chats left unanswered</div>
+        </div>
+        <div class="results">
+          <span class="badge b-teal">Qualified leads only</span>
+          <span class="badge b-teal">The rate card holds</span>
+          <span class="badge b-teal">Analytics every day</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Classifieds API</span><span class="tag">GPT-4o-mini</span><span class="tag">Analytics</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-icon ic-amber">📸</div>
+          <div class="case-meta">
+            <div class="case-title">Automated property posting to a Telegram channel</div>
+            <div class="case-sub">GPT Vision × Telegram × AI copywriting</div>
+          </div>
+        </div>
+        <div class="case-problem">The agency needed to publish listings to a Telegram channel regularly: pick the best photos, write selling copy, respect the platform limits. Done by hand it is slow and expensive.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-amber"></span>GPT Vision classifies photos by category and discards the unusable ones</div>
+          <div class="sol"><span class="sol-dot d-amber"></span>Assembles a top-10 set balanced across categories automatically</div>
+          <div class="sol"><span class="sol-dot d-amber"></span>GPT writes the selling copy strictly from the listing data</div>
+          <div class="sol"><span class="sol-dot d-amber"></span>Publishes to the channel and the group, then a contact footer after a pause</div>
+        </div>
+        <div class="results">
+          <span class="badge b-amber">0 manual work</span>
+          <span class="badge b-amber">One consistent style</span>
+          <span class="badge b-amber">Channel and group at once</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">GPT Vision</span><span class="tag">Telegram API</span><span class="tag">PIL</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-icon ic-coral">⚽</div>
+          <div class="case-meta">
+            <div class="case-title">Sports analytics bot with ML forecasts</div>
+            <div class="case-sub">ML × Claude AI × 5 leagues × Telegram channel</div>
+          </div>
+        </div>
+        <div class="case-problem">An automated football forecast channel was needed: several leagues, current data on injuries and team form, and only confident forecasts published.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-coral"></span>ML models predict the winner and the scoreline from historical data</div>
+          <div class="sol"><span class="sol-dot d-coral"></span>Claude with web search gathers news on injuries and suspensions</div>
+          <div class="sol"><span class="sol-dot d-coral"></span>Only forecasts above 60% confidence are published, with deduplication</div>
+          <div class="sol"><span class="sol-dot d-coral"></span>After the match the bot checks the result and updates the model's accuracy</div>
+        </div>
+        <div class="results">
+          <span class="badge b-coral">Premier League · La Liga · Bundesliga · Serie A · Ligue 1</span>
+          <span class="badge b-coral">Self-checking model</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/awelabs-footcast" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Pipeline on GitHub
+          </a>
+          <a href="https://github.com/mikeabakumoff/football-app" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Web App front end
+          </a>
+          <a href="https://mikeabakumoff.github.io/football-app/" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            Live Web App
+          </a>
+          <span class="case-note">demo runs on placeholder data</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">sklearn</span><span class="tag">Claude API</span><span class="tag">SQLite</span><span class="tag">Odds API</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-icon ic-violet">🏢</div>
+          <div class="case-meta">
+            <div class="case-title">CRM for a real estate agency</div>
+            <div class="case-sub">Leads × deal kanban × contracts</div>
+          </div>
+        </div>
+        <div class="case-problem">The agency ran on spreadsheets and chats: leads were lost, nobody could say which stage a deal had reached, and every contract was assembled by hand.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-violet"></span>Lead intake with a single register of clients and properties</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Deal pipeline as a kanban board, separate flows for sale and rent</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Contracts generated from the deal's own data</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Roles and an admin area — an agent sees only their own work</div>
+        </div>
+        <div class="results">
+          <span class="badge b-violet">One source of truth</span>
+          <span class="badge b-violet">Deal stages visible</span>
+          <span class="badge b-violet">Contracts from deal data</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/awelabs-crm-demo" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Code on GitHub
+          </a>
+          <a href="https://mikeabakumoff.github.io/awelabs-crm-demo/" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            Live demo
+          </a>
+          <span class="case-note">front-end demo, sanitized</span>
+        </div>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">CRM</span><span class="tag">Kanban</span><span class="tag">Contracts</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PRICING -->
+  <section id="services-en">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Pricing</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-price">from $200</div><div class="service-name">Simple bot (menus, auto-replies)</div></div>
+      <div class="service-card"><div class="service-price">from $400</div><div class="service-name">Lead intake bot + notifications</div></div>
+      <div class="service-card"><div class="service-price">from $600</div><div class="service-name">Marketplace automation (replies, parsing, campaigns)</div></div>
+      <div class="service-card"><div class="service-price">from $900</div><div class="service-name">LLM bot with lead qualification</div></div>
+      <div class="service-card"><div class="service-price">from $500</div><div class="service-name">CRM / API / Google Sheets integrations</div></div>
+      <div class="service-card"><div class="service-price">from $1,200</div><div class="service-name">Custom AI solutions</div></div>
+      <div class="service-card"><div class="service-price">from $2,000</div><div class="service-name">Full automation, end to end</div></div>
+      <div class="service-card"><div class="service-price">from $150/mo</div><div class="service-name">Support and maintenance</div></div>
+    </div>
+    <p class="section-note">First consult is free. Fixed quote after scoping — no surprises.</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- STACK -->
+  <section id="stack-en">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Technologies</h2>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-item"><span class="stack-dot"></span>Python</div>
+      <div class="stack-item"><span class="stack-dot"></span>JavaScript</div>
+      <div class="stack-item"><span class="stack-dot"></span>Django</div>
+      <div class="stack-item"><span class="stack-dot"></span>Express.js</div>
+      <div class="stack-item"><span class="stack-dot"></span>GPT-4o / Claude</div>
+      <div class="stack-item"><span class="stack-dot"></span>Telegram API</div>
+      <div class="stack-item"><span class="stack-dot"></span>Classifieds API</div>
+      <div class="stack-item"><span class="stack-dot"></span>REST / WebSockets</div>
+      <div class="stack-item"><span class="stack-dot"></span>OpenAI Vision</div>
+      <div class="stack-item"><span class="stack-dot"></span>sklearn / numpy</div>
+      <div class="stack-item"><span class="stack-dot"></span>SQLite / SQL</div>
+      <div class="stack-item"><span class="stack-dot"></span>CRM integrations</div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact-en">
+    <div class="contact-block">
+      <h2>Let's talk about <span>your task</span></h2>
+      <p>The first consultation is free. I usually reply within 10–15 minutes.</p>
+      <div class="contact-links">
+        <a href="https://t.me/awe_labs" class="contact-link contact-link-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
+          @awe_labs
+        </a>
+        <a href="https://github.com/mikeabakumoff" class="contact-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/mikhail-abakumov-it/" class="contact-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21.5h5.16V9.5H2.4v12zM9.5 9.5h4.95v1.64h.07c.69-1.24 2.38-2.55 4.9-2.55 5.24 0 6.2 3.3 6.2 7.6v6.31h-5.16v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.46-2.2 2.97v5.69H9.5v-12z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://wa.me/79148997600" class="contact-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.7h-.02a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.64.95.97-3.55-.23-.36a9.58 9.58 0 0 1-1.47-5.12c0-5.3 4.32-9.6 9.63-9.6a9.56 9.56 0 0 1 9.61 9.61c0 5.3-4.31 9.62-9.6 9.62zM20.52 3.45A11.87 11.87 0 0 0 12.05 0C5.46 0 .1 5.36.09 11.95c0 2.1.55 4.16 1.6 5.98L0 24l6.22-1.63a11.94 11.94 0 0 0 5.82 1.48h.01c6.59 0 11.95-5.36 11.95-11.95a11.87 11.87 0 0 0-3.48-8.45z"/></svg>
+          WhatsApp
+        </a>
+        <a class="contact-link js-mail" data-p1="mike" data-p2="abakumoff" data-p3="gmail" data-p4="com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <span class="mail-text"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    AweLabs — automation studio by Mikhail Abakumov · 2026 · Working remotely
+  </div>
+</footer>
+
+</div><!-- /EN -->
+
+
+<!-- ══════════════════════════════ РУССКИЙ ══════════════════════════════ -->
+<div data-lang="ru" hidden>
 
 <div class="container">
 
@@ -472,8 +923,8 @@ footer {
         <div class="stat-label">лет в IT</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">4</div>
-        <div class="stat-label">реальных кейса</div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">реальных кейсов</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">90<span>%</span></div>
@@ -489,14 +940,15 @@ footer {
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
         Написать в Telegram
       </a>
-      <a href="#cases" class="btn-secondary">Смотреть кейсы →</a>
+      <a href="#cases-ru" class="btn-secondary">Смотреть кейсы →</a>
     </div>
+    <p class="hero-tagline"><b>AweLabs</b> — студия автоматизации Михаила Абакумова</p>
   </section>
 
   <div class="section-divider"></div>
 
   <!-- COMPANIES -->
-  <section id="experience">
+  <section id="experience-ru">
     <div class="section-header">
       <span class="section-num">01</span>
       <h2 class="section-title">Работал с</h2>
@@ -528,7 +980,7 @@ footer {
   <div class="section-divider"></div>
 
   <!-- CASES -->
-  <section id="cases">
+  <section id="cases-ru">
     <div class="section-header">
       <span class="section-num">02</span>
       <h2 class="section-title">Кейсы</h2>
@@ -554,6 +1006,13 @@ footer {
           <span class="badge b-blue">0 пропущенных лидов</span>
           <span class="badge b-blue">Ответ за &lt;30 сек</span>
           <span class="badge b-blue">Менеджер видит только горячих</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/awelabs-realty-bot" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Код на GitHub
+          </a>
+          <span class="case-note">родственный проект — та же архитектура, другой клиент</span>
         </div>
         <div class="tags">
           <span class="tag">Python</span><span class="tag">Avito API</span><span class="tag">GPT-4o-mini</span><span class="tag">Telegram Bot</span>
@@ -629,8 +1088,59 @@ footer {
           <span class="badge b-coral">АПЛ · Ла Лига · Бундеслига · Серия А · Лига 1</span>
           <span class="badge b-coral">Самообучающаяся модель</span>
         </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/awelabs-footcast" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Код на GitHub
+          </a>
+          <a href="https://github.com/mikeabakumoff/football-app" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Фронт Web App
+          </a>
+          <a href="https://mikeabakumoff.github.io/football-app/" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            Живой Web App
+          </a>
+          <span class="case-note">демо на тестовых данных</span>
+        </div>
         <div class="tags">
           <span class="tag">Python</span><span class="tag">sklearn</span><span class="tag">Claude API</span><span class="tag">SQLite</span><span class="tag">Odds API</span>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-icon ic-violet">🏢</div>
+          <div class="case-meta">
+            <div class="case-title">CRM для агентства недвижимости</div>
+            <div class="case-sub">Заявки × канбан сделок × договоры</div>
+          </div>
+        </div>
+        <div class="case-problem">Агентство жило в таблицах и чатах: заявки терялись, никто не мог сказать, на какой стадии сделка, договоры каждый раз собирали руками.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-violet"></span>Приём заявок и единый реестр клиентов и объектов</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Воронка сделок канбаном, отдельные потоки для продажи и аренды</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Договоры формируются из данных самой сделки</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Роли и админка — агент видит только своё</div>
+        </div>
+        <div class="results">
+          <span class="badge b-violet">Единый реестр</span>
+          <span class="badge b-violet">Стадии сделок видны</span>
+          <span class="badge b-violet">Договоры из данных сделки</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/awelabs-crm-demo" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Код на GitHub
+          </a>
+          <a href="https://mikeabakumoff.github.io/awelabs-crm-demo/" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            Живое демо
+          </a>
+          <span class="case-note">демо фронта, обезличено</span>
+        </div>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">CRM</span><span class="tag">Канбан</span><span class="tag">Договоры</span>
         </div>
       </div>
 
@@ -640,7 +1150,7 @@ footer {
   <div class="section-divider"></div>
 
   <!-- SERVICES -->
-  <section id="services">
+  <section id="services-ru">
     <div class="section-header">
       <span class="section-num">03</span>
       <h2 class="section-title">Прайс-лист</h2>
@@ -660,7 +1170,7 @@ footer {
   <div class="section-divider"></div>
 
   <!-- STACK -->
-  <section id="stack">
+  <section id="stack-ru">
     <div class="section-header">
       <span class="section-num">04</span>
       <h2 class="section-title">Технологии</h2>
@@ -684,18 +1194,30 @@ footer {
   <div class="section-divider"></div>
 
   <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact-ru">
     <div class="contact-block">
       <h2>Обсудим <span>задачу?</span></h2>
       <p>Первая консультация бесплатно. Отвечаю обычно в течение 10–15 минут.</p>
       <div class="contact-links">
-        <a href="https://t.me/awe_labs" class="contact-link">
+        <a href="https://t.me/awe_labs" class="contact-link contact-link-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
           @awe_labs
         </a>
-        <a href="https://www.avito.ru" class="contact-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
-          Авито
+        <a href="https://github.com/mikeabakumoff" class="contact-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/mikhail-abakumov-it/" class="contact-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21.5h5.16V9.5H2.4v12zM9.5 9.5h4.95v1.64h.07c.69-1.24 2.38-2.55 4.9-2.55 5.24 0 6.2 3.3 6.2 7.6v6.31h-5.16v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.46-2.2 2.97v5.69H9.5v-12z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://wa.me/79148997600" class="contact-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.7h-.02a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.64.95.97-3.55-.23-.36a9.58 9.58 0 0 1-1.47-5.12c0-5.3 4.32-9.6 9.63-9.6a9.56 9.56 0 0 1 9.61 9.61c0 5.3-4.31 9.62-9.6 9.62zM20.52 3.45A11.87 11.87 0 0 0 12.05 0C5.46 0 .1 5.36.09 11.95c0 2.1.55 4.16 1.6 5.98L0 24l6.22-1.63a11.94 11.94 0 0 0 5.82 1.48h.01c6.59 0 11.95-5.36 11.95-11.95a11.87 11.87 0 0 0-3.48-8.45z"/></svg>
+          WhatsApp
+        </a>
+        <a class="contact-link js-mail" data-p1="mike" data-p2="abakumoff" data-p3="gmail" data-p4="com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <span class="mail-text"></span>
         </a>
       </div>
     </div>
@@ -705,9 +1227,96 @@ footer {
 
 <footer>
   <div class="container">
-    Михаил · Автоматизация бизнеса · 2025 · Работаю удалённо
+    AweLabs — студия автоматизации Михаила Абакумова · 2026 · Работаю удалённо
   </div>
 </footer>
+
+</div><!-- /RU -->
+
+
+<script>
+(function () {
+  var KEY = 'site-lang';
+  var META = {
+    en: {
+      title: 'AweLabs — Business Automation | Mikhail Abakumov',
+      desc:  'AweLabs — automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.'
+    },
+    ru: {
+      title: 'AweLabs — Автоматизация бизнеса | Михаил Абакумов',
+      desc:  'AweLabs — студия автоматизации Михаила Абакумова. Telegram-боты, AI-интеграции, автоматизация Авито и CRM. 17+ лет в IT.'
+    }
+  };
+
+  // The address is never written out in the HTML source — not as text, and not
+  // inside an href — so a harvester scraping the raw page finds nothing to take.
+  // It is assembled from four attributes at render time, and the link scheme is
+  // built by concatenation for the same reason.
+  function buildMailLinks() {
+    var at = String.fromCharCode(64);
+    var scheme = ['mail', 'to'].join('') + String.fromCharCode(58);
+    var nodes = document.querySelectorAll('.js-mail');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var addr = el.getAttribute('data-p1') + '.' + el.getAttribute('data-p2') +
+                 at +
+                 el.getAttribute('data-p3') + '.' + el.getAttribute('data-p4');
+      var slot = el.querySelector('.mail-text');
+      if (slot) slot.textContent = addr;
+      el.setAttribute('href', scheme + addr);
+    }
+  }
+
+  function apply(lang) {
+    if (lang !== 'ru') lang = 'en';
+
+    document.documentElement.lang = lang;
+    document.title = META[lang].title;
+    var d = document.querySelector('meta[name="description"]');
+    if (d) d.setAttribute('content', META[lang].desc);
+
+    var blocks = document.querySelectorAll('[data-lang]');
+    for (var i = 0; i < blocks.length; i++) {
+      blocks[i].hidden = blocks[i].getAttribute('data-lang') !== lang;
+    }
+
+    var btns = document.querySelectorAll('.lang-btn');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-set-lang') === lang));
+    }
+
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+
+  // Explicit ?lang= wins, then a previous choice, then the browser's language.
+  // Anything that is not Russian lands on English.
+  function initial() {
+    var q = (location.search.match(/[?&]lang=(en|ru)\b/) || [])[1];
+    if (q) return q;
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === 'en' || saved === 'ru') return saved;
+    } catch (e) {}
+    var nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    return nav.indexOf('ru') === 0 ? 'ru' : 'en';
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    while (t && t !== document && !(t.classList && t.classList.contains('lang-btn'))) t = t.parentNode;
+    if (!t || t === document) return;
+    e.preventDefault();
+    var lang = t.getAttribute('data-set-lang');
+    apply(lang);
+    if (history.replaceState) {
+      history.replaceState(null, '', lang === 'ru' ? '?lang=ru' : location.pathname);
+    }
+  });
+
+  buildMailLinks();
+  apply(initial());
+})();
+</script>
 
 </body>
 </html>
