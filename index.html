@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AweLabs — Business Automation | Mikhail Abakumov</title>
-<meta name="description" content="AweLabs — automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.">
+<title>AweLabs - Business Automation | Mikhail Abakumov</title>
+<meta name="description" content="AweLabs - automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@300;400;600&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -233,17 +233,30 @@ body::after {
 }
 
 /* CASES */
-.cases { display: flex; flex-direction: column; gap: 20px; }
+.cases { display: flex; flex-direction: column; gap: 48px; }
+html { scroll-snap-type: y proximity; }
+/* оглавление кейсов */
+.toc { display: grid; gap: 8px; margin: 0 0 48px; }
+.toc a { display: flex; align-items: baseline; gap: 14px; padding: 14px 18px; background: var(--bg2);
+         border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none;
+         font-family: 'Unbounded', sans-serif; font-size: 13px; line-height: 1.4; transition: border-color 0.2s; }
+.toc a:hover { border-color: var(--accent); }
+.toc .n { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); flex-shrink: 0; }
 .case-card {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 28px;
-  transition: border-color 0.25s, transform 0.25s;
-  opacity: 0;
-  animation: fadeUp 0.5s ease forwards;
+  transition: border-color 0.25s;
+  /* один проект = один экран: карточка во всю высоту, содержимое по центру */
+  min-height: calc(100vh - 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-margin-top: 48px;
 }
-.case-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+.case-card:hover { border-color: var(--border2); }
 .case-top {
   display: flex;
   align-items: flex-start;
@@ -555,11 +568,6 @@ footer {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.case-card:nth-child(1) { animation-delay: 0.1s; }
-.case-card:nth-child(2) { animation-delay: 0.2s; }
-.case-card:nth-child(3) { animation-delay: 0.3s; }
-.case-card:nth-child(4) { animation-delay: 0.4s; }
-.case-card:nth-child(5) { animation-delay: 0.5s; }
 
 /* MOBILE */
 @media (max-width: 600px) {
@@ -592,18 +600,18 @@ footer {
   <section class="hero">
     <div class="hero-label">// business automation, end to end</div>
     <h1>Mikhail builds<br><span>automation</span><br>for your business</h1>
-    <p class="hero-desc">Telegram bots, AI integrations and CRM automation. I cut manual work down to a minimum — only the solutions that save time and make money.</p>
+    <p class="hero-desc">Telegram bots, AI integrations and CRM automation. I cut manual work down to a minimum - only the solutions that save time and make money.</p>
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num">17<span>+</span></div>
         <div class="stat-label">years in IT</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">5</div>
+        <div class="stat-num">6</div>
         <div class="stat-label">case studies</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">8</div>
+        <div class="stat-num">9</div>
         <div class="stat-label">public repos on GitHub</div>
       </div>
     </div>
@@ -614,7 +622,7 @@ footer {
       </a>
       <a href="#cases-en" class="btn-secondary">See case studies →</a>
     </div>
-    <p class="hero-tagline"><b>AweLabs</b> — automation studio by Mikhail Abakumov</p>
+    <p class="hero-tagline"><b>AweLabs</b> - automation studio by Mikhail Abakumov</p>
   </section>
 
   <div class="section-divider"></div>
@@ -628,17 +636,17 @@ footer {
     <div class="companies-grid">
       <div class="company-card">
         <div class="company-name">Samokat</div>
-        <div class="company-role">Senior Technical Support Engineer · 2022–2025</div>
+        <div class="company-role">Senior Technical Support Engineer · 2022-2025</div>
         <div class="company-desc">Grocery delivery. Supported 2,000+ staff, led 6 engineers across regions, worked in Jira</div>
       </div>
       <div class="company-card">
         <div class="company-name">SOKOLOV</div>
-        <div class="company-role">Technical Support Specialist · 2021–2022</div>
+        <div class="company-role">Technical Support Specialist · 2021-2022</div>
         <div class="company-desc">Jewellery retail chain. Store-level support through a ticketing system</div>
       </div>
       <div class="company-card">
         <div class="company-name">Svyaznoy</div>
-        <div class="company-role">Retail &amp; Banking Equipment Engineer · 2019–2021</div>
+        <div class="company-role">Retail &amp; Banking Equipment Engineer · 2019-2021</div>
         <div class="company-desc">Electronics retail chain. Diagnostics and repair of PCs, payment terminals and fiscal registers</div>
       </div>
       <div class="company-card">
@@ -657,9 +665,17 @@ footer {
       <span class="section-num">02</span>
       <h2 class="section-title">Case studies</h2>
     </div>
+    <nav class="toc" aria-label="Contents">
+      <a href="#case-en-1"><span class="n">01</span>AI auto-responder for a real estate agency</a>
+      <a href="#case-en-2"><span class="n">02</span>Smart lead qualifier for an IT specialist</a>
+      <a href="#case-en-3"><span class="n">03</span>Automated property posting to a Telegram channel</a>
+      <a href="#case-en-4"><span class="n">04</span>Sports analytics bot with ML forecasts</a>
+      <a href="#case-en-5"><span class="n">05</span>CRM for a real estate agency</a>
+      <a href="#case-en-6"><span class="n">06</span>Quiz host for a Thai study group</a>
+    </nav>
     <div class="cases">
 
-      <div class="case-card">
+      <div class="case-card" id="case-en-1">
         <div class="case-top">
           <div class="case-icon ic-blue">🤖</div>
           <div class="case-meta">
@@ -667,7 +683,7 @@ footer {
             <div class="case-sub">Classifieds × GPT-4o × Telegram</div>
           </div>
         </div>
-        <div class="case-problem">A real estate agency in Pattaya was receiving enquiries through a classifieds platform, but managers could not answer fast enough — leads went cold and clients went to competitors.</div>
+        <div class="case-problem">A real estate agency in Pattaya was receiving enquiries through a classifieds platform, but managers could not answer fast enough - leads went cold and clients went to competitors.</div>
         <div class="case-solutions">
           <div class="sol"><span class="sol-dot d-blue"></span>GPT-4o runs the conversation to a script: dates, budget, type of property</div>
           <div class="sol"><span class="sol-dot d-blue"></span>A hot lead triggers an instant Telegram notification to the manager</div>
@@ -684,14 +700,14 @@ footer {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
             Code on GitHub
           </a>
-          <span class="case-note">related project — same architecture, different client</span>
+          <span class="case-note">related project - same architecture, different client</span>
         </div>
         <div class="tags">
           <span class="tag">Python</span><span class="tag">Classifieds API</span><span class="tag">GPT-4o-mini</span><span class="tag">Telegram Bot</span>
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-en-2">
         <div class="case-top">
           <div class="case-icon ic-teal">⚡</div>
           <div class="case-meta">
@@ -702,7 +718,7 @@ footer {
         <div class="case-problem">Too many off-target enquiries: people write about the wrong thing, haggle below the rate card and eat up time. A filter was needed before any live contact.</div>
         <div class="case-solutions">
           <div class="sol"><span class="sol-dot d-teal"></span>The bot establishes the task before handing over any contact details</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Checks the budget — filters out off-target requests automatically</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Checks the budget - filters out off-target requests automatically</div>
           <div class="sol"><span class="sol-dot d-teal"></span>Holds the rate card firmly and does not haggle</div>
           <div class="sol"><span class="sol-dot d-teal"></span>Daily stats: messages, replies, chats left unanswered</div>
         </div>
@@ -716,7 +732,7 @@ footer {
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-en-3">
         <div class="case-top">
           <div class="case-icon ic-amber">📸</div>
           <div class="case-meta">
@@ -741,7 +757,7 @@ footer {
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-en-4">
         <div class="case-top">
           <div class="case-icon ic-coral">⚽</div>
           <div class="case-meta">
@@ -780,7 +796,7 @@ footer {
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-en-5">
         <div class="case-top">
           <div class="case-icon ic-violet">🏢</div>
           <div class="case-meta">
@@ -793,7 +809,7 @@ footer {
           <div class="sol"><span class="sol-dot d-violet"></span>Lead intake with a single register of clients and properties</div>
           <div class="sol"><span class="sol-dot d-violet"></span>Deal pipeline as a kanban board, separate flows for sale and rent</div>
           <div class="sol"><span class="sol-dot d-violet"></span>Contracts generated from the deal's own data</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Roles and an admin area — an agent sees only their own work</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Roles and an admin area - an agent sees only their own work</div>
         </div>
         <div class="results">
           <span class="badge b-violet">One source of truth</span>
@@ -813,6 +829,38 @@ footer {
         </div>
         <div class="tags">
           <span class="tag">JavaScript</span><span class="tag">CRM</span><span class="tag">Kanban</span><span class="tag">Contracts</span>
+        </div>
+      </div>
+
+      <div class="case-card" id="case-en-6">
+        <div class="case-top">
+          <div class="case-icon ic-teal">🎓</div>
+          <div class="case-meta">
+            <div class="case-title">Quiz host for a Thai study group</div>
+            <div class="case-sub">Claude × GPT × Telegram group</div>
+          </div>
+        </div>
+        <div class="case-problem">Friends learning Thai together wanted to test themselves on the whole course, not just the last lesson, without anyone writing questions by hand.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-teal"></span>Lesson PDFs forwarded to the group are parsed into words, rules and phrases</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>20-round speed quiz: say it in Thai, translate from Thai, read a letter from a workbook page</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Every generated sentence is checked in code against the lessons' vocabulary</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>A GPT host introduces each task; a question never repeats for the same player</div>
+        </div>
+        <div class="results">
+          <span class="badge b-teal">Any number of players</span>
+          <span class="badge b-teal">No repeated questions</span>
+          <span class="badge b-teal">Owner-only controls</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/Awe_Labs_quiz" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Code on GitHub
+          </a>
+          <span class="case-note">sanitized copy, course materials excluded</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">python-telegram-bot</span><span class="tag">Claude API</span><span class="tag">OpenAI API</span><span class="tag">SQLite</span>
         </div>
       </div>
 
@@ -837,7 +885,7 @@ footer {
       <div class="service-card"><div class="service-price">from $2,000</div><div class="service-name">Full automation, end to end</div></div>
       <div class="service-card"><div class="service-price">from $150/mo</div><div class="service-name">Support and maintenance</div></div>
     </div>
-    <p class="section-note">First consult is free. Fixed quote after scoping — no surprises.</p>
+    <p class="section-note">First consult is free. Fixed quote after scoping - no surprises.</p>
   </section>
 
   <div class="section-divider"></div>
@@ -870,7 +918,7 @@ footer {
   <section id="contact-en">
     <div class="contact-block">
       <h2>Let's talk about <span>your task</span></h2>
-      <p>The first consultation is free. I usually reply within 10–15 minutes.</p>
+      <p>The first consultation is free. I usually reply within 10-15 minutes.</p>
       <div class="contact-links">
         <a href="https://t.me/awe_labs" class="contact-link contact-link-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
@@ -900,7 +948,7 @@ footer {
 
 <footer>
   <div class="container">
-    AweLabs — automation studio by Mikhail Abakumov · 2026 · Working remotely
+    AweLabs - automation studio by Mikhail Abakumov · 2026 · Working remotely
   </div>
 </footer>
 
@@ -916,14 +964,14 @@ footer {
   <section class="hero">
     <div class="hero-label">// автоматизация бизнеса под ключ</div>
     <h1>Михаил<br><span>автоматизирует</span><br>ваш бизнес</h1>
-    <p class="hero-desc">Telegram-боты, AI-интеграции, автоматизация Авито и CRM. Снижаю ручной труд до минимума — только решения, которые экономят время и приносят деньги.</p>
+    <p class="hero-desc">Telegram-боты, AI-интеграции, автоматизация Авито и CRM. Снижаю ручной труд до минимума - только решения, которые экономят время и приносят деньги.</p>
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num">17<span>+</span></div>
         <div class="stat-label">лет в IT</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">5</div>
+        <div class="stat-num">6</div>
         <div class="stat-label">реальных кейсов</div>
       </div>
       <div class="stat-item">
@@ -942,7 +990,7 @@ footer {
       </a>
       <a href="#cases-ru" class="btn-secondary">Смотреть кейсы →</a>
     </div>
-    <p class="hero-tagline"><b>AweLabs</b> — студия автоматизации Михаила Абакумова</p>
+    <p class="hero-tagline"><b>AweLabs</b> - студия автоматизации Михаила Абакумова</p>
   </section>
 
   <div class="section-divider"></div>
@@ -956,17 +1004,17 @@ footer {
     <div class="companies-grid">
       <div class="company-card">
         <div class="company-name">Самокат</div>
-        <div class="company-role">Старший инженер технической поддержки · 2022–2025</div>
+        <div class="company-role">Старший инженер технической поддержки · 2022-2025</div>
         <div class="company-desc">Поддержка 2000+ сотрудников, 6 подчинённых в регионах, работа с Jira</div>
       </div>
       <div class="company-card">
         <div class="company-name">SOKOLOV</div>
-        <div class="company-role">Специалист технической поддержки · 2021–2022</div>
+        <div class="company-role">Специалист технической поддержки · 2021-2022</div>
         <div class="company-desc">Поддержка розничных магазинов сети, тикет-система</div>
       </div>
       <div class="company-card">
         <div class="company-name">Связной</div>
-        <div class="company-role">Инженер торгово-банковской техники · 2019–2021</div>
+        <div class="company-role">Инженер торгово-банковской техники · 2019-2021</div>
         <div class="company-desc">Диагностика и ремонт ПК, платёжных терминалов, ККТ по всей сети</div>
       </div>
       <div class="company-card">
@@ -985,9 +1033,17 @@ footer {
       <span class="section-num">02</span>
       <h2 class="section-title">Кейсы</h2>
     </div>
+    <nav class="toc" aria-label="Оглавление">
+      <a href="#case-ru-1"><span class="n">01</span>AI-автоответчик для агентства недвижимости</a>
+      <a href="#case-ru-2"><span class="n">02</span>Умный квалификатор лидов для IT-специалиста</a>
+      <a href="#case-ru-3"><span class="n">03</span>Автопостинг недвижимости в Telegram-канал</a>
+      <a href="#case-ru-4"><span class="n">04</span>Бот спортивной аналитики с ML-прогнозами</a>
+      <a href="#case-ru-5"><span class="n">05</span>CRM для агентства недвижимости</a>
+      <a href="#case-ru-6"><span class="n">06</span>Ведущий квиза для группы, изучающей тайский</a>
+    </nav>
     <div class="cases">
 
-      <div class="case-card">
+      <div class="case-card" id="case-ru-1">
         <div class="case-top">
           <div class="case-icon ic-blue">🤖</div>
           <div class="case-meta">
@@ -995,10 +1051,10 @@ footer {
             <div class="case-sub">Авито × GPT-4o × Telegram</div>
           </div>
         </div>
-        <div class="case-problem">Агентство недвижимости в Паттайе получало заявки на Авито, но менеджеры не успевали отвечать быстро — лиды терялись, клиенты уходили к конкурентам.</div>
+        <div class="case-problem">Агентство недвижимости в Паттайе получало заявки на Авито, но менеджеры не успевали отвечать быстро - лиды терялись, клиенты уходили к конкурентам.</div>
         <div class="case-solutions">
           <div class="sol"><span class="sol-dot d-blue"></span>GPT-4o ведёт диалог по скрипту: выясняет даты, бюджет, тип жилья</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>Горячий лид — мгновенное уведомление менеджеру в Telegram</div>
+          <div class="sol"><span class="sol-dot d-blue"></span>Горячий лид - мгновенное уведомление менеджеру в Telegram</div>
           <div class="sol"><span class="sol-dot d-blue"></span>Followup через 12 ч, если клиент не оставил контакт</div>
           <div class="sol"><span class="sol-dot d-blue"></span>Дневной отчёт: сколько лидов ожидают ответа</div>
         </div>
@@ -1012,14 +1068,14 @@ footer {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
             Код на GitHub
           </a>
-          <span class="case-note">родственный проект — та же архитектура, другой клиент</span>
+          <span class="case-note">родственный проект - та же архитектура, другой клиент</span>
         </div>
         <div class="tags">
           <span class="tag">Python</span><span class="tag">Avito API</span><span class="tag">GPT-4o-mini</span><span class="tag">Telegram Bot</span>
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-ru-2">
         <div class="case-top">
           <div class="case-icon ic-teal">⚡</div>
           <div class="case-meta">
@@ -1027,10 +1083,10 @@ footer {
             <div class="case-sub">Авито × GPT-4o × воронка продаж</div>
           </div>
         </div>
-        <div class="case-problem">Много нецелевых обращений на Авито — люди пишут не по теме, торгуются ниже прайса, отнимают время. Нужен автоматический фильтр перед живым контактом.</div>
+        <div class="case-problem">Много нецелевых обращений на Авито - люди пишут не по теме, торгуются ниже прайса, отнимают время. Нужен автоматический фильтр перед живым контактом.</div>
         <div class="case-solutions">
           <div class="sol"><span class="sol-dot d-teal"></span>Бот выясняет задачу перед тем, как давать контакт</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Проверяет бюджет — отсекает нецелевые запросы автоматически</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Проверяет бюджет - отсекает нецелевые запросы автоматически</div>
           <div class="sol"><span class="sol-dot d-teal"></span>Твёрдо держит прайс, не торгуется</div>
           <div class="sol"><span class="sol-dot d-teal"></span>Дневная статистика: сообщений, ответов, чатов без ответа</div>
         </div>
@@ -1044,7 +1100,7 @@ footer {
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-ru-3">
         <div class="case-top">
           <div class="case-icon ic-amber">📸</div>
           <div class="case-meta">
@@ -1052,12 +1108,12 @@ footer {
             <div class="case-sub">GPT Vision × Telegram × AI-копирайтинг</div>
           </div>
         </div>
-        <div class="case-problem">Агентству нужно регулярно публиковать объекты в Telegram-канал: отбирать лучшие фото, писать продающие тексты, соблюдать лимиты. Вручную — дорого и долго.</div>
+        <div class="case-problem">Агентству нужно регулярно публиковать объекты в Telegram-канал: отбирать лучшие фото, писать продающие тексты, соблюдать лимиты. Вручную - дорого и долго.</div>
         <div class="case-solutions">
           <div class="sol"><span class="sol-dot d-amber"></span>GPT Vision классифицирует фото по категориям и отсеивает брак</div>
           <div class="sol"><span class="sol-dot d-amber"></span>Собирает топ-10 фото с балансом по категориям автоматически</div>
           <div class="sol"><span class="sol-dot d-amber"></span>GPT пишет продающий текст строго по данным объекта</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>Публикует в канал и группу, через паузу — футер с контактами</div>
+          <div class="sol"><span class="sol-dot d-amber"></span>Публикует в канал и группу, через паузу - футер с контактами</div>
         </div>
         <div class="results">
           <span class="badge b-amber">0 ручного труда</span>
@@ -1069,7 +1125,7 @@ footer {
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-ru-4">
         <div class="case-top">
           <div class="case-icon ic-coral">⚽</div>
           <div class="case-meta">
@@ -1108,7 +1164,7 @@ footer {
         </div>
       </div>
 
-      <div class="case-card">
+      <div class="case-card" id="case-ru-5">
         <div class="case-top">
           <div class="case-icon ic-violet">🏢</div>
           <div class="case-meta">
@@ -1121,7 +1177,7 @@ footer {
           <div class="sol"><span class="sol-dot d-violet"></span>Приём заявок и единый реестр клиентов и объектов</div>
           <div class="sol"><span class="sol-dot d-violet"></span>Воронка сделок канбаном, отдельные потоки для продажи и аренды</div>
           <div class="sol"><span class="sol-dot d-violet"></span>Договоры формируются из данных самой сделки</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Роли и админка — агент видит только своё</div>
+          <div class="sol"><span class="sol-dot d-violet"></span>Роли и админка - агент видит только своё</div>
         </div>
         <div class="results">
           <span class="badge b-violet">Единый реестр</span>
@@ -1141,6 +1197,38 @@ footer {
         </div>
         <div class="tags">
           <span class="tag">JavaScript</span><span class="tag">CRM</span><span class="tag">Канбан</span><span class="tag">Договоры</span>
+        </div>
+      </div>
+
+      <div class="case-card" id="case-ru-6">
+        <div class="case-top">
+          <div class="case-icon ic-teal">🎓</div>
+          <div class="case-meta">
+            <div class="case-title">Ведущий квиза для группы, изучающей тайский</div>
+            <div class="case-sub">Claude × GPT × Telegram-группа</div>
+          </div>
+        </div>
+        <div class="case-problem">Друзья вместе учат тайский и хотели проверять себя по всему курсу, а не только по последнему уроку, причём так, чтобы никому не приходилось сочинять вопросы вручную.</div>
+        <div class="case-solutions">
+          <div class="sol"><span class="sol-dot d-teal"></span>PDF уроков, пересланные в группу, разбираются на слова, правила и фразы</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Квиз на скорость из 20 раундов: сказать по-тайски, перевести, прочитать букву со страницы прописей</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Каждое сгенерированное предложение проверяется кодом по словарю уроков</div>
+          <div class="sol"><span class="sol-dot d-teal"></span>Ведущий на GPT подводит к каждому заданию; вопросы у игрока не повторяются</div>
+        </div>
+        <div class="results">
+          <span class="badge b-teal">Любое число игроков</span>
+          <span class="badge b-teal">Без повторов вопросов</span>
+          <span class="badge b-teal">Управляет только владелец</span>
+        </div>
+        <div class="case-links">
+          <a href="https://github.com/mikeabakumoff/Awe_Labs_quiz" class="case-link" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Код на GitHub
+          </a>
+          <span class="case-note">очищенная копия, без материалов курса</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">python-telegram-bot</span><span class="tag">Claude API</span><span class="tag">OpenAI API</span><span class="tag">SQLite</span>
         </div>
       </div>
 
@@ -1197,7 +1285,7 @@ footer {
   <section id="contact-ru">
     <div class="contact-block">
       <h2>Обсудим <span>задачу?</span></h2>
-      <p>Первая консультация бесплатно. Отвечаю обычно в течение 10–15 минут.</p>
+      <p>Первая консультация бесплатно. Отвечаю обычно в течение 10-15 минут.</p>
       <div class="contact-links">
         <a href="https://t.me/awe_labs" class="contact-link contact-link-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
@@ -1227,7 +1315,7 @@ footer {
 
 <footer>
   <div class="container">
-    AweLabs — студия автоматизации Михаила Абакумова · 2026 · Работаю удалённо
+    AweLabs - студия автоматизации Михаила Абакумова · 2026 · Работаю удалённо
   </div>
 </footer>
 
@@ -1239,17 +1327,17 @@ footer {
   var KEY = 'site-lang';
   var META = {
     en: {
-      title: 'AweLabs — Business Automation | Mikhail Abakumov',
-      desc:  'AweLabs — automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.'
+      title: 'AweLabs - Business Automation | Mikhail Abakumov',
+      desc:  'AweLabs - automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.'
     },
     ru: {
-      title: 'AweLabs — Автоматизация бизнеса | Михаил Абакумов',
-      desc:  'AweLabs — студия автоматизации Михаила Абакумова. Telegram-боты, AI-интеграции, автоматизация Авито и CRM. 17+ лет в IT.'
+      title: 'AweLabs - Автоматизация бизнеса | Михаил Абакумов',
+      desc:  'AweLabs - студия автоматизации Михаила Абакумова. Telegram-боты, AI-интеграции, автоматизация Авито и CRM. 17+ лет в IT.'
     }
   };
 
-  // The address is never written out in the HTML source — not as text, and not
-  // inside an href — so a harvester scraping the raw page finds nothing to take.
+  // The address is never written out in the HTML source - not as text, and not
+  // inside an href - so a harvester scraping the raw page finds nothing to take.
   // It is assembled from four attributes at render time, and the link scheme is
   // built by concatenation for the same reason.
   function buildMailLinks() {
