@@ -31,7 +31,6 @@ body {
 }
 [hidden] { display: none !important; }
 
-/* NOISE OVERLAY */
 body::before {
   content: '';
   position: fixed;
@@ -42,7 +41,6 @@ body::before {
   opacity: 0.4;
 }
 
-/* GRID BACKGROUND */
 body::after {
   content: '';
   position: fixed;
@@ -62,7 +60,6 @@ body::after {
   z-index: 1;
 }
 
-/* TOPBAR / LANGUAGE SWITCH */
 .topbar {
   position: sticky;
   top: 0;
@@ -109,7 +106,6 @@ body::after {
 .lang-btn:hover { color: var(--text); }
 .lang-btn[aria-pressed="true"] { background: var(--accent); color: #0a0a0b; }
 
-/* HERO */
 .hero {
   padding: 80px 0 80px;
   position: relative;
@@ -205,14 +201,12 @@ body::after {
 }
 .btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-/* DIVIDER */
 .section-divider {
   height: 1px;
   background: var(--border);
   margin: 60px 0;
 }
 
-/* SECTION HEADER */
 .section-header {
   display: flex;
   align-items: baseline;
@@ -232,10 +226,9 @@ body::after {
   letter-spacing: -0.5px;
 }
 
-/* CASES */
 .cases { display: flex; flex-direction: column; gap: 48px; }
 html { scroll-snap-type: y proximity; }
-/* оглавление кейсов */
+
 .toc { display: grid; gap: 8px; margin: 0 0 48px; }
 .toc a { display: flex; align-items: baseline; gap: 14px; padding: 14px 18px; background: var(--bg2);
          border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none;
@@ -248,7 +241,7 @@ html { scroll-snap-type: y proximity; }
   border-radius: 12px;
   padding: 28px;
   transition: border-color 0.25s;
-  /* один проект = один экран: карточка во всю высоту, содержимое по центру */
+
   min-height: calc(100vh - 96px);
   display: flex;
   flex-direction: column;
@@ -347,7 +340,6 @@ html { scroll-snap-type: y proximity; }
 .b-coral { background: rgba(216,90,48,0.1); color: #F0997B; border: 1px solid rgba(216,90,48,0.15); }
 .b-violet { background: rgba(139,109,221,0.1); color: #B7A3F0; border: 1px solid rgba(139,109,221,0.15); }
 
-/* CASE LINKS */
 .case-links {
   display: flex;
   gap: 8px;
@@ -393,7 +385,6 @@ html { scroll-snap-type: y proximity; }
   border: 1px solid var(--border);
 }
 
-/* COMPANIES */
 .companies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -427,7 +418,6 @@ html { scroll-snap-type: y proximity; }
   line-height: 1.55;
 }
 
-/* SERVICES */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -461,7 +451,6 @@ html { scroll-snap-type: y proximity; }
   line-height: 1.6;
 }
 
-/* BRAND TAGLINE UNDER HERO */
 .hero-tagline {
   margin-top: 36px;
   padding-top: 20px;
@@ -475,7 +464,6 @@ html { scroll-snap-type: y proximity; }
 }
 .hero-tagline b { color: var(--text); font-weight: 500; }
 
-/* STACK */
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -500,7 +488,6 @@ html { scroll-snap-type: y proximity; }
   flex-shrink: 0;
 }
 
-/* CONTACT */
 .contact-block {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -549,10 +536,9 @@ html { scroll-snap-type: y proximity; }
   font-weight: 500;
 }
 .contact-link-primary:hover { color: #0a0a0b; border-color: var(--accent); opacity: 0.9; }
-/* the address is assembled by script; keep the slot from collapsing before that */
+
 .js-mail:empty, .mail-text:empty { min-width: 1px; }
 
-/* FOOTER */
 footer {
   text-align: center;
   padding: 40px 0;
@@ -563,13 +549,11 @@ footer {
   margin-top: 80px;
 }
 
-/* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* MOBILE */
 @media (max-width: 600px) {
   .hero { padding: 48px 0 40px; }
   .case-solutions { grid-template-columns: 1fr; }
@@ -590,13 +574,10 @@ footer {
   </div>
 </div>
 
-
-<!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
 <div data-lang="en">
 
 <div class="container">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-label">// business automation, end to end</div>
     <h1>Mikhail builds<br><span>automation</span><br>for your business</h1>
@@ -627,7 +608,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- COMPANIES -->
   <section id="experience-en">
     <div class="section-header">
       <span class="section-num">01</span>
@@ -659,7 +639,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- CASES -->
   <section id="cases-en">
     <div class="section-header">
       <span class="section-num">02</span>
@@ -869,7 +848,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- PRICING -->
   <section id="services-en">
     <div class="section-header">
       <span class="section-num">03</span>
@@ -890,7 +868,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- STACK -->
   <section id="stack-en">
     <div class="section-header">
       <span class="section-num">04</span>
@@ -914,7 +891,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- CONTACT -->
   <section id="contact-en">
     <div class="contact-block">
       <h2>Let's talk about <span>your task</span></h2>
@@ -952,15 +928,12 @@ footer {
   </div>
 </footer>
 
-</div><!-- /EN -->
+</div>
 
-
-<!-- ══════════════════════════════ РУССКИЙ ══════════════════════════════ -->
 <div data-lang="ru" hidden>
 
 <div class="container">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-label">// автоматизация бизнеса под ключ</div>
     <h1>Михаил<br><span>автоматизирует</span><br>ваш бизнес</h1>
@@ -995,7 +968,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- COMPANIES -->
   <section id="experience-ru">
     <div class="section-header">
       <span class="section-num">01</span>
@@ -1027,7 +999,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- CASES -->
   <section id="cases-ru">
     <div class="section-header">
       <span class="section-num">02</span>
@@ -1237,7 +1208,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- SERVICES -->
   <section id="services-ru">
     <div class="section-header">
       <span class="section-num">03</span>
@@ -1257,7 +1227,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- STACK -->
   <section id="stack-ru">
     <div class="section-header">
       <span class="section-num">04</span>
@@ -1281,7 +1250,6 @@ footer {
 
   <div class="section-divider"></div>
 
-  <!-- CONTACT -->
   <section id="contact-ru">
     <div class="contact-block">
       <h2>Обсудим <span>задачу?</span></h2>
@@ -1319,8 +1287,7 @@ footer {
   </div>
 </footer>
 
-</div><!-- /RU -->
-
+</div>
 
 <script>
 (function () {
@@ -1336,10 +1303,6 @@ footer {
     }
   };
 
-  // The address is never written out in the HTML source - not as text, and not
-  // inside an href - so a harvester scraping the raw page finds nothing to take.
-  // It is assembled from four attributes at render time, and the link scheme is
-  // built by concatenation for the same reason.
   function buildMailLinks() {
     var at = String.fromCharCode(64);
     var scheme = ['mail', 'to'].join('') + String.fromCharCode(58);
@@ -1376,8 +1339,6 @@ footer {
     try { localStorage.setItem(KEY, lang); } catch (e) {}
   }
 
-  // Explicit ?lang= wins, then a previous choice, then the browser's language.
-  // Anything that is not Russian lands on English.
   function initial() {
     var q = (location.search.match(/[?&]lang=(en|ru)\b/) || [])[1];
     if (q) return q;
