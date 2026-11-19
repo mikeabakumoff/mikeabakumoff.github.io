@@ -1,1371 +1,271 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AweLabs - Business Automation | Mikhail Abakumov</title>
-<meta name="description" content="AweLabs - automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@300;400;600&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikhail Abakumov - Python engineer, AweLabs</title>
+<meta name="description" content="Mikhail Abakumov - Python engineer and founder of AweLabs. CRM ecosystems, Telegram bots and Mini Apps, AI assistants, document automation, order radars, content pipelines and ML forecasts.">
+<meta property="og:title" content="Mikhail Abakumov - routine to code, time to you">
+<meta property="og:description" content="Python engineer, founder of AweLabs. Live demos of 6 automation products.">
+<meta property="og:image" content="https://mikeabakumoff.github.io/img/crm-ru.webp">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0b'/%3E%3Ctext x='12' y='44' font-family='monospace' font-size='34' fill='%23e8f0e8'%3Em%3C/text%3E%3Crect x='40' y='20' width='12' height='26' fill='%2300ff41'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a0b;
-  --bg2: #0d120e;
-  --bg3: #121a14;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --text: #e8f0e8;
-  --muted: #7a857c;
-  --accent: #00ff41;
-  --accent2: #00b82e;
-  --accent3: #7a857c;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Mulish', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-[hidden] { display: none !important; }
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.container {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 24px;
-  position: relative;
-  z-index: 1;
-}
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(10,10,11,0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-.topbar-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 10px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.brand {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.4px;
-  color: var(--text);
-  text-decoration: none;
-}
-.brand span { color: var(--accent); }
-.lang-switch {
-  display: inline-flex;
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  overflow: hidden;
-}
-.lang-btn {
-  background: transparent;
-  color: var(--muted);
-  border: 0;
-  padding: 5px 12px;
-  cursor: pointer;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
-  transition: background 0.2s, color 0.2s;
-}
-.lang-btn:hover { color: var(--text); }
-.lang-btn[aria-pressed="true"] { background: var(--accent); color: #0a0a0b; }
-
-.hero {
-  padding: 80px 0 80px;
-  position: relative;
-}
-.hero-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.1s;
-}
-.hero h1 {
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(32px, 6vw, 56px);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -1px;
-  margin-bottom: 24px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.2s;
-}
-.hero h1 span { color: var(--accent); }
-.hero-desc {
-  font-size: 17px;
-  color: var(--muted);
-  max-width: 520px;
-  margin-bottom: 40px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.3s;
-}
-.hero-stats {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-bottom: 48px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.4s;
-}
-.stat-item { }
-.stat-num {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1;
-}
-.stat-num span { color: var(--accent); }
-.stat-label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 4px;
-  font-family: 'JetBrains Mono', monospace;
-}
-.hero-cta {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.5s;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent);
-  color: #0a0a0b;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s, opacity 0.2s;
-}
-.btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--text);
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: 1px solid var(--border2);
-  font-family: 'Unbounded', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  text-decoration: none;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
-
-.section-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 60px 0;
-}
-
-.section-header {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 40px;
-}
-.section-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-.section-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-}
-
-.cases { display: flex; flex-direction: column; gap: 48px; }
-html { scroll-snap-type: y proximity; }
-
-.toc { display: grid; gap: 8px; margin: 0 0 48px; }
-.toc a { display: flex; align-items: baseline; gap: 14px; padding: 14px 18px; background: var(--bg2);
-         border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none;
-         font-family: 'Unbounded', sans-serif; font-size: 13px; line-height: 1.4; transition: border-color 0.2s; }
-.toc a:hover { border-color: var(--accent); }
-.toc .n { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); flex-shrink: 0; }
-.case-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
-  transition: border-color 0.25s;
-
-  min-height: calc(100vh - 96px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  scroll-snap-align: start;
-  scroll-margin-top: 48px;
-}
-.case-card:hover { border-color: var(--border2); }
-.case-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.case-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 20px;
-}
-.ic-blue { background: rgba(55,138,221,0.12); border: 1px solid rgba(55,138,221,0.2); }
-.ic-teal { background: rgba(29,158,117,0.12); border: 1px solid rgba(29,158,117,0.2); }
-.ic-amber { background: rgba(186,117,23,0.12); border: 1px solid rgba(186,117,23,0.2); }
-.ic-coral { background: rgba(216,90,48,0.12); border: 1px solid rgba(216,90,48,0.2); }
-.ic-violet { background: rgba(139,109,221,0.12); border: 1px solid rgba(139,109,221,0.2); }
-.case-meta {}
-.case-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.35;
-  margin-bottom: 4px;
-}
-.case-sub {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-}
-.case-problem {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 16px;
-  padding: 12px 14px;
-  background: var(--bg3);
-  border-radius: 8px;
-  border-left: 2px solid var(--border2);
-}
-.case-solutions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.sol {
-  font-size: 13px;
-  color: var(--muted);
-  padding: 10px 12px;
-  background: var(--bg3);
-  border-radius: 8px;
-  line-height: 1.5;
-  display: flex;
-  gap: 8px;
-}
-.sol-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  margin-top: 6px;
-  flex-shrink: 0;
-}
-.d-blue { background: #378ADD; }
-.d-teal { background: #1D9E75; }
-.d-amber { background: #BA7517; }
-.d-coral { background: #D85A30; }
-.d-violet { background: #8B6DDD; }
-.results {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-.badge {
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-.b-blue { background: rgba(55,138,221,0.1); color: #85B7EB; border: 1px solid rgba(55,138,221,0.15); }
-.b-teal { background: rgba(29,158,117,0.1); color: #5DCAA5; border: 1px solid rgba(29,158,117,0.15); }
-.b-amber { background: rgba(186,117,23,0.1); color: #EF9F27; border: 1px solid rgba(186,117,23,0.15); }
-.b-coral { background: rgba(216,90,48,0.1); color: #F0997B; border: 1px solid rgba(216,90,48,0.15); }
-.b-violet { background: rgba(139,109,221,0.1); color: #B7A3F0; border: 1px solid rgba(139,109,221,0.15); }
-
-.case-links {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.case-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  text-decoration: none;
-  padding: 6px 10px;
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.case-link:hover { border-color: var(--accent); color: var(--accent); }
-.case-note {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  opacity: 0.65;
-}
-
-.tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--muted);
-  padding: 3px 8px;
-  background: var(--bg3);
-  border-radius: 4px;
-  border: 1px solid var(--border);
-}
-
-.companies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-}
-.company-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.company-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.company-name {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.company-role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--accent);
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-.company-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-}
-.service-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  transition: border-color 0.2s;
-}
-.service-card:hover { border-color: var(--border2); }
-.service-price {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-.service-name {
-  font-size: 14px;
-  color: var(--text);
-  font-weight: 500;
-}
-
-.section-note {
-  margin-top: 16px;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.hero-tagline {
-  margin-top: 36px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.5px;
-  color: var(--muted);
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards 0.6s;
-}
-.hero-tagline b { color: var(--text); font-weight: 500; }
-
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 8px;
-}
-.stack-item {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.stack-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent2);
-  flex-shrink: 0;
-}
-
-.contact-block {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 40px;
-  text-align: center;
-}
-.contact-block h2 {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
-.contact-block h2 span { color: var(--accent); }
-.contact-block p {
-  color: var(--muted);
-  font-size: 15px;
-  max-width: 420px;
-  margin: 0 auto 32px;
-}
-.contact-links {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.contact-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border2);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 14px;
-  font-family: 'JetBrains Mono', monospace;
-  transition: border-color 0.2s, color 0.2s, transform 0.2s;
-}
-.contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-.contact-link-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #0a0a0b;
-  font-weight: 500;
-}
-.contact-link-primary:hover { color: #0a0a0b; border-color: var(--accent); opacity: 0.9; }
-
-.js-mail:empty, .mail-text:empty { min-width: 1px; }
-
-footer {
-  text-align: center;
-  padding: 40px 0;
-  color: var(--muted);
-  font-size: 12px;
-  font-family: 'JetBrains Mono', monospace;
-  border-top: 1px solid var(--border);
-  margin-top: 80px;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 600px) {
-  .hero { padding: 48px 0 40px; }
-  .case-solutions { grid-template-columns: 1fr; }
-  .hero-stats { gap: 24px; }
-  .contact-block { padding: 28px 20px; }
-}
+:root{--bg:#0a0a0b;--bg2:#0d120e;--bg3:#121a14;--line:#1b241d;--line2:#26332a;--text:#e8f0e8;--muted:#8a958c;--dim:#5d685f;--g:#00ff41;--g2:#00b82e;--g3:#003b0f;--lime:#e8f55a;
+--head:'Manrope',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font:400 16px/1.65 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,65,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,65,.025) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(#000,transparent 85%);z-index:0}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(10,10,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font:500 17px var(--mono);letter-spacing:-.01em;white-space:nowrap}
+.cur{display:inline-block;width:.55em;height:1.05em;background:var(--g);margin-left:3px;vertical-align:-3px;box-shadow:0 0 10px rgba(0,255,65,.5);animation:bl 1.05s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+nav{display:flex;gap:26px;font:13px var(--mono);color:var(--muted)}nav a:hover{color:var(--text)}nav a::before{content:"./";color:var(--g2)}
+.lang{display:flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;flex:none}.lang button{background:none;border:0;color:var(--muted);font:500 12px var(--mono);padding:7px 13px;cursor:pointer}.lang button.on{background:var(--g);color:var(--bg)}
+/* hero */
+.hero{padding-top:92px;padding-bottom:84px}
+.tag{font:12px var(--mono);color:var(--g);letter-spacing:.06em;display:flex;align-items:center;gap:10px;margin-bottom:26px}.tag i{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g)}
+.who{font:600 18px var(--body);color:var(--muted);margin-bottom:10px}.who b{color:var(--text);font-weight:700}
+h1{font:800 clamp(42px,7vw,88px)/1.02 var(--head);letter-spacing:-.035em;margin-bottom:28px}
+h1 em{font-style:normal;color:var(--g)}
+.lead{font-size:clamp(16px,1.6vw,19px);color:#b9c4bb;max-width:720px;margin-bottom:36px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px}
+.btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:12px;font:600 15px var(--body);border:1px solid var(--line2);transition:.2s;cursor:pointer}
+.btn.p{background:var(--g);color:var(--bg);border-color:var(--g)}.btn.p:hover{box-shadow:0 0 28px rgba(0,255,65,.35)}
+.btn.s:hover{border-color:var(--g2);color:var(--g)}
+.btn.demo{background:var(--lime);color:var(--bg);border-color:var(--lime)}.btn.demo:hover{box-shadow:0 0 24px rgba(232,245,90,.3)}
+.btn.sm{height:42px;padding:0 18px;font-size:14px;border-radius:10px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:16px;background:rgba(13,18,14,.6)}
+.stats div{padding:20px 22px;border-left:1px solid var(--line)}.stats div:first-child{border-left:0}
+.stats b{display:block;font:700 28px var(--head);letter-spacing:-.02em}.stats b em{font-style:normal;color:var(--g)}
+.stats span{font:12px var(--mono);color:var(--muted)}
+/* sections */
+section{position:relative;z-index:1;padding:88px 0;border-top:1px solid var(--line)}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.sh small{display:block;font:12px var(--mono);color:var(--g);margin-bottom:10px}
+h2{font:700 clamp(28px,3.6vw,44px)/1.1 var(--head);letter-spacing:-.025em}
+.sh p{color:var(--muted);max-width:420px;font-size:15px}
+/* cases */
+.case{display:grid;grid-template-columns:1.08fr 1fr;gap:40px;align-items:center;padding:36px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--bg2),rgba(13,18,14,.4));margin-bottom:22px}
+.case:nth-child(even) .shot{order:2}
+.shot{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background:#0f1611;aspect-ratio:16/10;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .6s}.case:hover .shot img{transform:scale(1.02)}
+.shot .bar{position:absolute;left:0;right:0;top:0;height:26px;background:rgba(10,10,11,.85);display:flex;align-items:center;gap:6px;padding:0 10px;border-bottom:1px solid var(--line2)}
+.shot .bar i{width:8px;height:8px;border-radius:50%;background:#2a362d}.shot .bar span{margin-left:8px;font:10.5px var(--mono);color:var(--dim)}
+.shot img{padding-top:26px}
+.num{font:12px var(--mono);color:var(--g2);margin-bottom:12px;display:flex;gap:10px;align-items:center}.num em{font-style:normal;color:var(--dim)}
+.case h3{font:700 clamp(22px,2.3vw,28px)/1.2 var(--head);letter-spacing:-.02em;margin-bottom:8px}
+.stack{font:12px var(--mono);color:var(--muted);margin-bottom:18px}
+.task{font-size:15px;color:#b9c4bb;padding:14px 16px;border-left:2px solid var(--g2);background:rgba(0,255,65,.03);border-radius:0 10px 10px 0;margin-bottom:16px}
+.case ul{list-style:none;display:grid;gap:8px;margin-bottom:18px}
+.case li{font-size:14.5px;color:#c7d1c9;padding-left:20px;position:relative}.case li::before{content:"›";position:absolute;left:4px;top:-1px;color:var(--g);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{font:12px var(--mono);padding:6px 11px;border-radius:8px;border:1px solid var(--g3);background:rgba(0,255,65,.06);color:var(--g)}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+/* more */
+.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--bg2);display:flex;flex-direction:column;gap:10px}
+.card .ic{font:600 18px var(--mono);color:var(--g)}
+.card h4{font:700 18px/1.3 var(--head)}
+.card p{font-size:14.5px;color:var(--muted);flex:1}
+.card a.l{font:13px var(--mono);color:var(--g)}.card a.l:hover{text-decoration:underline}
+/* experience */
+.exp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.job{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--bg2)}
+.job .t{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.job h4{font:700 19px var(--head)}.job .y{font:12px var(--mono);color:var(--dim)}
+.job .r{font:13px var(--mono);color:var(--g2);margin-bottom:10px}
+.job p{font-size:14.5px;color:var(--muted)}
+/* prices */
+.price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 2px;border-bottom:1px solid var(--line)}
+.row span{color:#c7d1c9}.row b{font:600 15px var(--mono);color:var(--g);white-space:nowrap}
+.note{margin-top:18px;font:12.5px var(--mono);color:var(--dim)}
+/* stack */
+.tech{display:flex;flex-wrap:wrap;gap:10px}
+.tech span{font:13px var(--mono);padding:9px 14px;border:1px solid var(--line2);border-radius:10px;color:#c7d1c9;background:var(--bg2)}
+/* contact */
+.contact{padding:56px;border:1px solid var(--g3);border-radius:26px;background:radial-gradient(circle at 85% 0%,rgba(0,255,65,.12),transparent 55%),var(--bg2);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.contact h2{margin-bottom:14px}.contact p{color:var(--muted)}
+.cl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cl a{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border:1px solid var(--line2);border-radius:12px;background:rgba(10,10,11,.5);transition:.2s}
+.cl a:hover{border-color:var(--g2)}.cl a b{font:600 14px var(--body)}.cl a span{font:12px var(--mono);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl a.main{grid-column:1/-1;background:var(--g);border-color:var(--g);color:var(--bg)}.cl a.main span{color:rgba(10,10,11,.7)}
+footer{position:relative;z-index:1;padding:36px 0 48px;color:var(--dim);font:12px var(--mono)}footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--muted)}footer a:hover{color:var(--g)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:980px){nav{display:none}.case{grid-template-columns:minmax(0,1fr);padding:22px;gap:24px}.case:nth-child(even) .shot{order:0}.more{grid-template-columns:minmax(0,1fr)}.exp,.price{grid-template-columns:minmax(0,1fr)}.contact{grid-template-columns:minmax(0,1fr);padding:30px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media(max-width:560px){.wrap{padding:0 16px}.hero{padding-top:56px;padding-bottom:56px}section{padding:64px 0}.cl{grid-template-columns:minmax(0,1fr)}.btn{height:48px}.stats b{font-size:24px}.case{padding:16px;border-radius:18px}.contact{padding:22px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<header><div class="wrap">
+  <a class="logo" href="#top">mike_abakumov<span class="cur"></span></a>
+  <nav><a href="#cases" data-i="n1"></a><a href="#more" data-i="n2"></a><a href="#exp" data-i="n3"></a><a href="#price" data-i="n4"></a><a href="#contact" data-i="n5"></a></nav>
+  <div class="lang"><button data-set="ru">RU</button><button data-set="en">EN</button></div>
+</div></header>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#">Awe<span>Labs</span></a>
-    <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" class="lang-btn" data-set-lang="en" aria-pressed="true">EN</button>
-      <button type="button" class="lang-btn" data-set-lang="ru" aria-pressed="false">RU</button>
-    </div>
+<main id="top">
+<div class="wrap hero">
+  <div class="tag"><i></i><span data-i="tag"></span></div>
+  <p class="who" data-html="who"></p>
+  <h1 data-html="h1"></h1>
+  <p class="lead" data-i="lead"></p>
+  <div class="cta">
+    <a class="btn p" href="https://t.me/awe_labs" target="_blank" rel="noopener"><span data-i="cta1"></span> →</a>
+    <a class="btn s" href="#cases" data-i="cta2"></a>
+    <a class="btn s" href="https://awelabs.io" target="_blank" rel="noopener">awelabs.io ↗</a>
+  </div>
+  <div class="stats">
+    <div><b>6</b><span data-i="s1"></span></div>
+    <div><b>24<em>/</em>7</b><span data-i="s2"></span></div>
+    <div><b>EN·RU·TH</b><span data-i="s3"></span></div>
+    <div><b>$35</b><span data-i="s4"></span></div>
   </div>
 </div>
 
-<div data-lang="en">
+<section id="cases"><div class="wrap">
+  <div class="sh rv"><div><small>01 / cases</small><h2 data-i="h_cases"></h2></div><p data-i="p_cases"></p></div>
+  <div id="caseList"></div>
+</div></section>
 
-<div class="container">
+<section id="more"><div class="wrap">
+  <div class="sh rv"><div><small>02 / more</small><h2 data-i="h_more"></h2></div><p data-i="p_more"></p></div>
+  <div class="more" id="moreList"></div>
+</div></section>
 
-  <section class="hero">
-    <div class="hero-label">// business automation, end to end</div>
-    <h1>Mikhail builds<br><span>automation</span><br>for your business</h1>
-    <p class="hero-desc">Telegram bots, AI integrations and CRM automation. I cut manual work down to a minimum - only the solutions that save time and make money.</p>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">17<span>+</span></div>
-        <div class="stat-label">years in IT</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">6</div>
-        <div class="stat-label">case studies</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">9</div>
-        <div class="stat-label">public repos on GitHub</div>
-      </div>
+<section id="exp"><div class="wrap">
+  <div class="sh rv"><div><small>03 / experience</small><h2 data-i="h_exp"></h2></div><p data-i="p_exp"></p></div>
+  <div class="exp" id="expList"></div>
+</div></section>
+
+<section id="price"><div class="wrap">
+  <div class="sh rv"><div><small>04 / pricing</small><h2 data-i="h_price"></h2></div><p data-i="p_price"></p></div>
+  <div class="price" id="priceList"></div>
+  <p class="note" data-i="price_note"></p>
+</div></section>
+
+<section id="stack"><div class="wrap">
+  <div class="sh rv"><div><small>05 / stack</small><h2 data-i="h_stack"></h2></div></div>
+  <div class="tech rv" id="tech"></div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="contact rv">
+    <div><small class="mono" style="color:var(--g);font-size:12px;display:block;margin-bottom:12px">06 / contact</small><h2 data-i="h_contact"></h2><p data-i="p_contact"></p></div>
+    <div class="cl">
+      <a class="main" href="https://t.me/awe_labs" target="_blank" rel="noopener"><b>Telegram</b><span>@awe_labs</span></a>
+      <a href="https://wa.me/79148997600" target="_blank" rel="noopener"><b>WhatsApp</b><span>+7 914 899-76-00</span></a>
+      <a href="https://line.me/ti/p/~awemike" target="_blank" rel="noopener"><b>LINE</b><span>awemike</span></a>
+      <a href="https://www.linkedin.com/in/mikhail-abakumov-it/" target="_blank" rel="noopener"><b>LinkedIn</b><span>mikhail-abakumov-it</span></a>
+      <a href="https://github.com/mikeabakumoff" target="_blank" rel="noopener"><b>GitHub</b><span>mikeabakumoff</span></a>
+      <a class="js-mail" href="#" data-p1="mike" data-p2="abakumoff" data-p3="gmail" data-p4="com"><b>Email</b><span>mike.abakumoff@…</span></a>
+      <a href="https://awelabs.io" target="_blank" rel="noopener"><b>AweLabs</b><span>awelabs.io</span></a>
     </div>
-    <div class="hero-cta">
-      <a href="https://t.me/awe_labs" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
-        Message on Telegram
-      </a>
-      <a href="#cases-en" class="btn-secondary">See case studies →</a>
-    </div>
-    <p class="hero-tagline"><b>AweLabs</b> - automation studio by Mikhail Abakumov</p>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="experience-en">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Worked with</h2>
-    </div>
-    <div class="companies-grid">
-      <div class="company-card">
-        <div class="company-name">Samokat</div>
-        <div class="company-role">Senior Technical Support Engineer · 2022-2025</div>
-        <div class="company-desc">Grocery delivery. Supported 2,000+ staff, led 6 engineers across regions, worked in Jira</div>
-      </div>
-      <div class="company-card">
-        <div class="company-name">SOKOLOV</div>
-        <div class="company-role">Technical Support Specialist · 2021-2022</div>
-        <div class="company-desc">Jewellery retail chain. Store-level support through a ticketing system</div>
-      </div>
-      <div class="company-card">
-        <div class="company-name">Svyaznoy</div>
-        <div class="company-role">Retail &amp; Banking Equipment Engineer · 2019-2021</div>
-        <div class="company-desc">Electronics retail chain. Diagnostics and repair of PCs, payment terminals and fiscal registers</div>
-      </div>
-      <div class="company-card">
-        <div class="company-name">ICL</div>
-        <div class="company-role">Local Support Engineer · 2021</div>
-        <div class="company-desc">IT services. Retail and banking hardware, networks, POS equipment, parcel lockers</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="cases-en">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Case studies</h2>
-    </div>
-    <nav class="toc" aria-label="Contents">
-      <a href="#case-en-1"><span class="n">01</span>AI auto-responder for a real estate agency</a>
-      <a href="#case-en-2"><span class="n">02</span>Smart lead qualifier for an IT specialist</a>
-      <a href="#case-en-3"><span class="n">03</span>Automated property posting to a Telegram channel</a>
-      <a href="#case-en-4"><span class="n">04</span>Sports analytics bot with ML forecasts</a>
-      <a href="#case-en-5"><span class="n">05</span>CRM for a real estate agency</a>
-      <a href="#case-en-6"><span class="n">06</span>Quiz host for a Thai study group</a>
-    </nav>
-    <div class="cases">
-
-      <div class="case-card" id="case-en-1">
-        <div class="case-top">
-          <div class="case-icon ic-blue">🤖</div>
-          <div class="case-meta">
-            <div class="case-title">AI auto-responder for a real estate agency</div>
-            <div class="case-sub">Classifieds × GPT-4o × Telegram</div>
-          </div>
-        </div>
-        <div class="case-problem">A real estate agency in Pattaya was receiving enquiries through a classifieds platform, but managers could not answer fast enough - leads went cold and clients went to competitors.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-blue"></span>GPT-4o runs the conversation to a script: dates, budget, type of property</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>A hot lead triggers an instant Telegram notification to the manager</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>Follow-up after 12 hours if the client left no contact details</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>Daily report: how many leads are still waiting for a reply</div>
-        </div>
-        <div class="results">
-          <span class="badge b-blue">0 missed leads</span>
-          <span class="badge b-blue">Reply in &lt;30 sec</span>
-          <span class="badge b-blue">Managers see only hot leads</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/awelabs-realty-bot" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Code on GitHub
-          </a>
-          <span class="case-note">related project - same architecture, different client</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Classifieds API</span><span class="tag">GPT-4o-mini</span><span class="tag">Telegram Bot</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-en-2">
-        <div class="case-top">
-          <div class="case-icon ic-teal">⚡</div>
-          <div class="case-meta">
-            <div class="case-title">Smart lead qualifier for an IT specialist</div>
-            <div class="case-sub">Classifieds × GPT-4o × sales funnel</div>
-          </div>
-        </div>
-        <div class="case-problem">Too many off-target enquiries: people write about the wrong thing, haggle below the rate card and eat up time. A filter was needed before any live contact.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-teal"></span>The bot establishes the task before handing over any contact details</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Checks the budget - filters out off-target requests automatically</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Holds the rate card firmly and does not haggle</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Daily stats: messages, replies, chats left unanswered</div>
-        </div>
-        <div class="results">
-          <span class="badge b-teal">Qualified leads only</span>
-          <span class="badge b-teal">The rate card holds</span>
-          <span class="badge b-teal">Analytics every day</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Classifieds API</span><span class="tag">GPT-4o-mini</span><span class="tag">Analytics</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-en-3">
-        <div class="case-top">
-          <div class="case-icon ic-amber">📸</div>
-          <div class="case-meta">
-            <div class="case-title">Automated property posting to a Telegram channel</div>
-            <div class="case-sub">GPT Vision × Telegram × AI copywriting</div>
-          </div>
-        </div>
-        <div class="case-problem">The agency needed to publish listings to a Telegram channel regularly: pick the best photos, write selling copy, respect the platform limits. Done by hand it is slow and expensive.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-amber"></span>GPT Vision classifies photos by category and discards the unusable ones</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>Assembles a top-10 set balanced across categories automatically</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>GPT writes the selling copy strictly from the listing data</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>Publishes to the channel and the group, then a contact footer after a pause</div>
-        </div>
-        <div class="results">
-          <span class="badge b-amber">0 manual work</span>
-          <span class="badge b-amber">One consistent style</span>
-          <span class="badge b-amber">Channel and group at once</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">GPT Vision</span><span class="tag">Telegram API</span><span class="tag">PIL</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-en-4">
-        <div class="case-top">
-          <div class="case-icon ic-coral">⚽</div>
-          <div class="case-meta">
-            <div class="case-title">Sports analytics bot with ML forecasts</div>
-            <div class="case-sub">ML × Claude AI × 5 leagues × Telegram channel</div>
-          </div>
-        </div>
-        <div class="case-problem">An automated football forecast channel was needed: several leagues, current data on injuries and team form, and only confident forecasts published.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-coral"></span>ML models predict the winner and the scoreline from historical data</div>
-          <div class="sol"><span class="sol-dot d-coral"></span>Claude with web search gathers news on injuries and suspensions</div>
-          <div class="sol"><span class="sol-dot d-coral"></span>Only forecasts above 60% confidence are published, with deduplication</div>
-          <div class="sol"><span class="sol-dot d-coral"></span>After the match the bot checks the result and updates the model's accuracy</div>
-        </div>
-        <div class="results">
-          <span class="badge b-coral">Premier League · La Liga · Bundesliga · Serie A · Ligue 1</span>
-          <span class="badge b-coral">Self-checking model</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/awelabs-footcast" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Pipeline on GitHub
-          </a>
-          <a href="https://github.com/mikeabakumoff/football-app" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Web App front end
-          </a>
-          <a href="https://mikeabakumoff.github.io/football-app/" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            Live Web App
-          </a>
-          <span class="case-note">demo runs on placeholder data</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">sklearn</span><span class="tag">Claude API</span><span class="tag">SQLite</span><span class="tag">Odds API</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-en-5">
-        <div class="case-top">
-          <div class="case-icon ic-violet">🏢</div>
-          <div class="case-meta">
-            <div class="case-title">CRM for a real estate agency</div>
-            <div class="case-sub">Leads × deal kanban × contracts</div>
-          </div>
-        </div>
-        <div class="case-problem">The agency ran on spreadsheets and chats: leads were lost, nobody could say which stage a deal had reached, and every contract was assembled by hand.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-violet"></span>Lead intake with a single register of clients and properties</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Deal pipeline as a kanban board, separate flows for sale and rent</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Contracts generated from the deal's own data</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Roles and an admin area - an agent sees only their own work</div>
-        </div>
-        <div class="results">
-          <span class="badge b-violet">One source of truth</span>
-          <span class="badge b-violet">Deal stages visible</span>
-          <span class="badge b-violet">Contracts from deal data</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/awelabs-crm-demo" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Code on GitHub
-          </a>
-          <a href="https://mikeabakumoff.github.io/awelabs-crm-demo/" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            Live demo
-          </a>
-          <span class="case-note">front-end demo, sanitized</span>
-        </div>
-        <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">CRM</span><span class="tag">Kanban</span><span class="tag">Contracts</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-en-6">
-        <div class="case-top">
-          <div class="case-icon ic-teal">🎓</div>
-          <div class="case-meta">
-            <div class="case-title">Quiz host for a Thai study group</div>
-            <div class="case-sub">Claude × GPT × Telegram group</div>
-          </div>
-        </div>
-        <div class="case-problem">Friends learning Thai together wanted to test themselves on the whole course, not just the last lesson, without anyone writing questions by hand.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-teal"></span>Lesson PDFs forwarded to the group are parsed into words, rules and phrases</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>20-round speed quiz: say it in Thai, translate from Thai, read a letter from a workbook page</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Every generated sentence is checked in code against the lessons' vocabulary</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>A GPT host introduces each task; a question never repeats for the same player</div>
-        </div>
-        <div class="results">
-          <span class="badge b-teal">Any number of players</span>
-          <span class="badge b-teal">No repeated questions</span>
-          <span class="badge b-teal">Owner-only controls</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/Awe_Labs_quiz" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Code on GitHub
-          </a>
-          <span class="case-note">sanitized copy, course materials excluded</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">python-telegram-bot</span><span class="tag">Claude API</span><span class="tag">OpenAI API</span><span class="tag">SQLite</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="services-en">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Pricing</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card"><div class="service-price">from $200</div><div class="service-name">Simple bot (menus, auto-replies)</div></div>
-      <div class="service-card"><div class="service-price">from $400</div><div class="service-name">Lead intake bot + notifications</div></div>
-      <div class="service-card"><div class="service-price">from $600</div><div class="service-name">Marketplace automation (replies, parsing, campaigns)</div></div>
-      <div class="service-card"><div class="service-price">from $900</div><div class="service-name">LLM bot with lead qualification</div></div>
-      <div class="service-card"><div class="service-price">from $500</div><div class="service-name">CRM / API / Google Sheets integrations</div></div>
-      <div class="service-card"><div class="service-price">from $1,200</div><div class="service-name">Custom AI solutions</div></div>
-      <div class="service-card"><div class="service-price">from $2,000</div><div class="service-name">Full automation, end to end</div></div>
-      <div class="service-card"><div class="service-price">from $150/mo</div><div class="service-name">Support and maintenance</div></div>
-    </div>
-    <p class="section-note">First consult is free. Fixed quote after scoping - no surprises.</p>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="stack-en">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Technologies</h2>
-    </div>
-    <div class="stack-grid">
-      <div class="stack-item"><span class="stack-dot"></span>Python</div>
-      <div class="stack-item"><span class="stack-dot"></span>JavaScript</div>
-      <div class="stack-item"><span class="stack-dot"></span>Django</div>
-      <div class="stack-item"><span class="stack-dot"></span>Express.js</div>
-      <div class="stack-item"><span class="stack-dot"></span>GPT-4o / Claude</div>
-      <div class="stack-item"><span class="stack-dot"></span>Telegram API</div>
-      <div class="stack-item"><span class="stack-dot"></span>Classifieds API</div>
-      <div class="stack-item"><span class="stack-dot"></span>REST / WebSockets</div>
-      <div class="stack-item"><span class="stack-dot"></span>OpenAI Vision</div>
-      <div class="stack-item"><span class="stack-dot"></span>sklearn / numpy</div>
-      <div class="stack-item"><span class="stack-dot"></span>SQLite / SQL</div>
-      <div class="stack-item"><span class="stack-dot"></span>CRM integrations</div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="contact-en">
-    <div class="contact-block">
-      <h2>Let's talk about <span>your task</span></h2>
-      <p>The first consultation is free. I usually reply within 10-15 minutes.</p>
-      <div class="contact-links">
-        <a href="https://t.me/awe_labs" class="contact-link contact-link-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
-          @awe_labs
-        </a>
-        <a href="https://github.com/mikeabakumoff" class="contact-link" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/mikhail-abakumov-it/" class="contact-link" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21.5h5.16V9.5H2.4v12zM9.5 9.5h4.95v1.64h.07c.69-1.24 2.38-2.55 4.9-2.55 5.24 0 6.2 3.3 6.2 7.6v6.31h-5.16v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.46-2.2 2.97v5.69H9.5v-12z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://wa.me/79148997600" class="contact-link" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.7h-.02a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.64.95.97-3.55-.23-.36a9.58 9.58 0 0 1-1.47-5.12c0-5.3 4.32-9.6 9.63-9.6a9.56 9.56 0 0 1 9.61 9.61c0 5.3-4.31 9.62-9.6 9.62zM20.52 3.45A11.87 11.87 0 0 0 12.05 0C5.46 0 .1 5.36.09 11.95c0 2.1.55 4.16 1.6 5.98L0 24l6.22-1.63a11.94 11.94 0 0 0 5.82 1.48h.01c6.59 0 11.95-5.36 11.95-11.95a11.87 11.87 0 0 0-3.48-8.45z"/></svg>
-          WhatsApp
-        </a>
-        <a class="contact-link js-mail" data-p1="mike" data-p2="abakumoff" data-p3="gmail" data-p4="com">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-          <span class="mail-text"></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<footer>
-  <div class="container">
-    AweLabs - automation studio by Mikhail Abakumov · 2026 · Working remotely
   </div>
-</footer>
+</div></section>
+</main>
 
-</div>
-
-<div data-lang="ru" hidden>
-
-<div class="container">
-
-  <section class="hero">
-    <div class="hero-label">// автоматизация бизнеса под ключ</div>
-    <h1>Михаил<br><span>автоматизирует</span><br>ваш бизнес</h1>
-    <p class="hero-desc">Telegram-боты, AI-интеграции, автоматизация Авито и CRM. Снижаю ручной труд до минимума - только решения, которые экономят время и приносят деньги.</p>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">17<span>+</span></div>
-        <div class="stat-label">лет в IT</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">6</div>
-        <div class="stat-label">реальных кейсов</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">90<span>%</span></div>
-        <div class="stat-label">меньше ручной работы</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">0<span>₽</span></div>
-        <div class="stat-label">первая консультация</div>
-      </div>
-    </div>
-    <div class="hero-cta">
-      <a href="https://t.me/awe_labs" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
-        Написать в Telegram
-      </a>
-      <a href="#cases-ru" class="btn-secondary">Смотреть кейсы →</a>
-    </div>
-    <p class="hero-tagline"><b>AweLabs</b> - студия автоматизации Михаила Абакумова</p>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="experience-ru">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">Работал с</h2>
-    </div>
-    <div class="companies-grid">
-      <div class="company-card">
-        <div class="company-name">Самокат</div>
-        <div class="company-role">Старший инженер технической поддержки · 2022-2025</div>
-        <div class="company-desc">Поддержка 2000+ сотрудников, 6 подчинённых в регионах, работа с Jira</div>
-      </div>
-      <div class="company-card">
-        <div class="company-name">SOKOLOV</div>
-        <div class="company-role">Специалист технической поддержки · 2021-2022</div>
-        <div class="company-desc">Поддержка розничных магазинов сети, тикет-система</div>
-      </div>
-      <div class="company-card">
-        <div class="company-name">Связной</div>
-        <div class="company-role">Инженер торгово-банковской техники · 2019-2021</div>
-        <div class="company-desc">Диагностика и ремонт ПК, платёжных терминалов, ККТ по всей сети</div>
-      </div>
-      <div class="company-card">
-        <div class="company-name">ICL-КПО ВС</div>
-        <div class="company-role">Инженер локальной поддержки · 2021</div>
-        <div class="company-desc">Торгово-банковская техника, сети, кассовое оборудование, почтоматы</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="cases-ru">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Кейсы</h2>
-    </div>
-    <nav class="toc" aria-label="Оглавление">
-      <a href="#case-ru-1"><span class="n">01</span>AI-автоответчик для агентства недвижимости</a>
-      <a href="#case-ru-2"><span class="n">02</span>Умный квалификатор лидов для IT-специалиста</a>
-      <a href="#case-ru-3"><span class="n">03</span>Автопостинг недвижимости в Telegram-канал</a>
-      <a href="#case-ru-4"><span class="n">04</span>Бот спортивной аналитики с ML-прогнозами</a>
-      <a href="#case-ru-5"><span class="n">05</span>CRM для агентства недвижимости</a>
-      <a href="#case-ru-6"><span class="n">06</span>Ведущий квиза для группы, изучающей тайский</a>
-    </nav>
-    <div class="cases">
-
-      <div class="case-card" id="case-ru-1">
-        <div class="case-top">
-          <div class="case-icon ic-blue">🤖</div>
-          <div class="case-meta">
-            <div class="case-title">AI-автоответчик для агентства недвижимости</div>
-            <div class="case-sub">Авито × GPT-4o × Telegram</div>
-          </div>
-        </div>
-        <div class="case-problem">Агентство недвижимости в Паттайе получало заявки на Авито, но менеджеры не успевали отвечать быстро - лиды терялись, клиенты уходили к конкурентам.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-blue"></span>GPT-4o ведёт диалог по скрипту: выясняет даты, бюджет, тип жилья</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>Горячий лид - мгновенное уведомление менеджеру в Telegram</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>Followup через 12 ч, если клиент не оставил контакт</div>
-          <div class="sol"><span class="sol-dot d-blue"></span>Дневной отчёт: сколько лидов ожидают ответа</div>
-        </div>
-        <div class="results">
-          <span class="badge b-blue">0 пропущенных лидов</span>
-          <span class="badge b-blue">Ответ за &lt;30 сек</span>
-          <span class="badge b-blue">Менеджер видит только горячих</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/awelabs-realty-bot" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Код на GitHub
-          </a>
-          <span class="case-note">родственный проект - та же архитектура, другой клиент</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Avito API</span><span class="tag">GPT-4o-mini</span><span class="tag">Telegram Bot</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-ru-2">
-        <div class="case-top">
-          <div class="case-icon ic-teal">⚡</div>
-          <div class="case-meta">
-            <div class="case-title">Умный квалификатор лидов для IT-специалиста</div>
-            <div class="case-sub">Авито × GPT-4o × воронка продаж</div>
-          </div>
-        </div>
-        <div class="case-problem">Много нецелевых обращений на Авито - люди пишут не по теме, торгуются ниже прайса, отнимают время. Нужен автоматический фильтр перед живым контактом.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-teal"></span>Бот выясняет задачу перед тем, как давать контакт</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Проверяет бюджет - отсекает нецелевые запросы автоматически</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Твёрдо держит прайс, не торгуется</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Дневная статистика: сообщений, ответов, чатов без ответа</div>
-        </div>
-        <div class="results">
-          <span class="badge b-teal">Только целевые лиды</span>
-          <span class="badge b-teal">Прайс не ломается</span>
-          <span class="badge b-teal">Аналитика каждый день</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Avito API</span><span class="tag">GPT-4o-mini</span><span class="tag">Статистика</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-ru-3">
-        <div class="case-top">
-          <div class="case-icon ic-amber">📸</div>
-          <div class="case-meta">
-            <div class="case-title">Автопостинг недвижимости в Telegram-канал</div>
-            <div class="case-sub">GPT Vision × Telegram × AI-копирайтинг</div>
-          </div>
-        </div>
-        <div class="case-problem">Агентству нужно регулярно публиковать объекты в Telegram-канал: отбирать лучшие фото, писать продающие тексты, соблюдать лимиты. Вручную - дорого и долго.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-amber"></span>GPT Vision классифицирует фото по категориям и отсеивает брак</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>Собирает топ-10 фото с балансом по категориям автоматически</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>GPT пишет продающий текст строго по данным объекта</div>
-          <div class="sol"><span class="sol-dot d-amber"></span>Публикует в канал и группу, через паузу - футер с контактами</div>
-        </div>
-        <div class="results">
-          <span class="badge b-amber">0 ручного труда</span>
-          <span class="badge b-amber">Единый стиль постов</span>
-          <span class="badge b-amber">Канал + группа одновременно</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">GPT Vision</span><span class="tag">Telegram API</span><span class="tag">PIL</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-ru-4">
-        <div class="case-top">
-          <div class="case-icon ic-coral">⚽</div>
-          <div class="case-meta">
-            <div class="case-title">Бот спортивной аналитики с ML-прогнозами</div>
-            <div class="case-sub">ML × Claude AI × 5 лиг × Telegram-канал</div>
-          </div>
-        </div>
-        <div class="case-problem">Нужен автоматический канал с прогнозами на футбол: несколько лиг, актуальные данные по травмам и формам команд, публикация только уверенных прогнозов.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-coral"></span>ML-модели прогнозируют победителя и счёт по историческим данным</div>
-          <div class="sol"><span class="sol-dot d-coral"></span>Claude AI с web search собирает новости о травмах и дисквалификациях</div>
-          <div class="sol"><span class="sol-dot d-coral"></span>Публикуются только прогнозы с вероятностью 60%+, автодедупликация</div>
-          <div class="sol"><span class="sol-dot d-coral"></span>После матча бот проверяет результат и обновляет точность модели</div>
-        </div>
-        <div class="results">
-          <span class="badge b-coral">АПЛ · Ла Лига · Бундеслига · Серия А · Лига 1</span>
-          <span class="badge b-coral">Самообучающаяся модель</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/awelabs-footcast" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Код на GitHub
-          </a>
-          <a href="https://github.com/mikeabakumoff/football-app" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Фронт Web App
-          </a>
-          <a href="https://mikeabakumoff.github.io/football-app/" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            Живой Web App
-          </a>
-          <span class="case-note">демо на тестовых данных</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">sklearn</span><span class="tag">Claude API</span><span class="tag">SQLite</span><span class="tag">Odds API</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-ru-5">
-        <div class="case-top">
-          <div class="case-icon ic-violet">🏢</div>
-          <div class="case-meta">
-            <div class="case-title">CRM для агентства недвижимости</div>
-            <div class="case-sub">Заявки × канбан сделок × договоры</div>
-          </div>
-        </div>
-        <div class="case-problem">Агентство жило в таблицах и чатах: заявки терялись, никто не мог сказать, на какой стадии сделка, договоры каждый раз собирали руками.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-violet"></span>Приём заявок и единый реестр клиентов и объектов</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Воронка сделок канбаном, отдельные потоки для продажи и аренды</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Договоры формируются из данных самой сделки</div>
-          <div class="sol"><span class="sol-dot d-violet"></span>Роли и админка - агент видит только своё</div>
-        </div>
-        <div class="results">
-          <span class="badge b-violet">Единый реестр</span>
-          <span class="badge b-violet">Стадии сделок видны</span>
-          <span class="badge b-violet">Договоры из данных сделки</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/awelabs-crm-demo" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Код на GitHub
-          </a>
-          <a href="https://mikeabakumoff.github.io/awelabs-crm-demo/" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
-            Живое демо
-          </a>
-          <span class="case-note">демо фронта, обезличено</span>
-        </div>
-        <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">CRM</span><span class="tag">Канбан</span><span class="tag">Договоры</span>
-        </div>
-      </div>
-
-      <div class="case-card" id="case-ru-6">
-        <div class="case-top">
-          <div class="case-icon ic-teal">🎓</div>
-          <div class="case-meta">
-            <div class="case-title">Ведущий квиза для группы, изучающей тайский</div>
-            <div class="case-sub">Claude × GPT × Telegram-группа</div>
-          </div>
-        </div>
-        <div class="case-problem">Друзья вместе учат тайский и хотели проверять себя по всему курсу, а не только по последнему уроку, причём так, чтобы никому не приходилось сочинять вопросы вручную.</div>
-        <div class="case-solutions">
-          <div class="sol"><span class="sol-dot d-teal"></span>PDF уроков, пересланные в группу, разбираются на слова, правила и фразы</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Квиз на скорость из 20 раундов: сказать по-тайски, перевести, прочитать букву со страницы прописей</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Каждое сгенерированное предложение проверяется кодом по словарю уроков</div>
-          <div class="sol"><span class="sol-dot d-teal"></span>Ведущий на GPT подводит к каждому заданию; вопросы у игрока не повторяются</div>
-        </div>
-        <div class="results">
-          <span class="badge b-teal">Любое число игроков</span>
-          <span class="badge b-teal">Без повторов вопросов</span>
-          <span class="badge b-teal">Управляет только владелец</span>
-        </div>
-        <div class="case-links">
-          <a href="https://github.com/mikeabakumoff/Awe_Labs_quiz" class="case-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Код на GitHub
-          </a>
-          <span class="case-note">очищенная копия, без материалов курса</span>
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">python-telegram-bot</span><span class="tag">Claude API</span><span class="tag">OpenAI API</span><span class="tag">SQLite</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="services-ru">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Прайс-лист</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card"><div class="service-price">от 3 000 ₽</div><div class="service-name">Простой бот (меню, автоответы, кнопки)</div></div>
-      <div class="service-card"><div class="service-price">от 7 000 ₽</div><div class="service-name">Бот для приёма заявок и уведомлений</div></div>
-      <div class="service-card"><div class="service-price">от 10 000 ₽</div><div class="service-name">Автоматизация Авито (ответы, парсинг, рассылки)</div></div>
-      <div class="service-card"><div class="service-price">от 15 000 ₽</div><div class="service-name">Бот с GPT и квалификацией лидов</div></div>
-      <div class="service-card"><div class="service-price">от 5 000 ₽</div><div class="service-name">Интеграция с CRM, API, Google Sheets</div></div>
-      <div class="service-card"><div class="service-price">от 20 000 ₽</div><div class="service-name">Разработка AI-решений</div></div>
-      <div class="service-card"><div class="service-price">от 25 000 ₽</div><div class="service-name">Полная автоматизация под ключ</div></div>
-      <div class="service-card"><div class="service-price">от 3 000 ₽</div><div class="service-name">Поддержка и сопровождение</div></div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="stack-ru">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Технологии</h2>
-    </div>
-    <div class="stack-grid">
-      <div class="stack-item"><span class="stack-dot"></span>Python</div>
-      <div class="stack-item"><span class="stack-dot"></span>JavaScript</div>
-      <div class="stack-item"><span class="stack-dot"></span>Django</div>
-      <div class="stack-item"><span class="stack-dot"></span>Express.js</div>
-      <div class="stack-item"><span class="stack-dot"></span>GPT-4o / Claude</div>
-      <div class="stack-item"><span class="stack-dot"></span>Telegram API</div>
-      <div class="stack-item"><span class="stack-dot"></span>Avito API</div>
-      <div class="stack-item"><span class="stack-dot"></span>REST / WebSockets</div>
-      <div class="stack-item"><span class="stack-dot"></span>OpenAI Vision</div>
-      <div class="stack-item"><span class="stack-dot"></span>sklearn / numpy</div>
-      <div class="stack-item"><span class="stack-dot"></span>SQLite / SQL</div>
-      <div class="stack-item"><span class="stack-dot"></span>CRM-интеграции</div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="contact-ru">
-    <div class="contact-block">
-      <h2>Обсудим <span>задачу?</span></h2>
-      <p>Первая консультация бесплатно. Отвечаю обычно в течение 10-15 минут.</p>
-      <div class="contact-links">
-        <a href="https://t.me/awe_labs" class="contact-link contact-link-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.471c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.447 14.51l-2.95-.924c-.64-.203-.654-.64.136-.948l11.527-4.445c.535-.194 1.003.131.402.055z"/></svg>
-          @awe_labs
-        </a>
-        <a href="https://github.com/mikeabakumoff" class="contact-link" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/mikhail-abakumov-it/" class="contact-link" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21.5h5.16V9.5H2.4v12zM9.5 9.5h4.95v1.64h.07c.69-1.24 2.38-2.55 4.9-2.55 5.24 0 6.2 3.3 6.2 7.6v6.31h-5.16v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.46-2.2 2.97v5.69H9.5v-12z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://wa.me/79148997600" class="contact-link" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.7h-.02a9.6 9.6 0 0 1-4.9-1.34l-.35-.21-3.64.95.97-3.55-.23-.36a9.58 9.58 0 0 1-1.47-5.12c0-5.3 4.32-9.6 9.63-9.6a9.56 9.56 0 0 1 9.61 9.61c0 5.3-4.31 9.62-9.6 9.62zM20.52 3.45A11.87 11.87 0 0 0 12.05 0C5.46 0 .1 5.36.09 11.95c0 2.1.55 4.16 1.6 5.98L0 24l6.22-1.63a11.94 11.94 0 0 0 5.82 1.48h.01c6.59 0 11.95-5.36 11.95-11.95a11.87 11.87 0 0 0-3.48-8.45z"/></svg>
-          WhatsApp
-        </a>
-        <a class="contact-link js-mail" data-p1="mike" data-p2="abakumoff" data-p3="gmail" data-p4="com">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-          <span class="mail-text"></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<footer>
-  <div class="container">
-    AweLabs - студия автоматизации Михаила Абакумова · 2026 · Работаю удалённо
-  </div>
-</footer>
-
-</div>
+<footer><div class="wrap"><span data-i="ft"></span><span>© 2026 · <a href="https://awelabs.io">awelabs.io</a></span></div></footer>
 
 <script>
-(function () {
-  var KEY = 'site-lang';
-  var META = {
-    en: {
-      title: 'AweLabs - Business Automation | Mikhail Abakumov',
-      desc:  'AweLabs - automation studio by Mikhail Abakumov. Telegram bots, AI integrations and CRM automation. 17+ years in IT.'
-    },
-    ru: {
-      title: 'AweLabs - Автоматизация бизнеса | Михаил Абакумов',
-      desc:  'AweLabs - студия автоматизации Михаила Абакумова. Telegram-боты, AI-интеграции, автоматизация Авито и CRM. 17+ лет в IT.'
-    }
-  };
-
-  function buildMailLinks() {
-    var at = String.fromCharCode(64);
-    var scheme = ['mail', 'to'].join('') + String.fromCharCode(58);
-    var nodes = document.querySelectorAll('.js-mail');
-    for (var i = 0; i < nodes.length; i++) {
-      var el = nodes[i];
-      var addr = el.getAttribute('data-p1') + '.' + el.getAttribute('data-p2') +
-                 at +
-                 el.getAttribute('data-p3') + '.' + el.getAttribute('data-p4');
-      var slot = el.querySelector('.mail-text');
-      if (slot) slot.textContent = addr;
-      el.setAttribute('href', scheme + addr);
-    }
-  }
-
-  function apply(lang) {
-    if (lang !== 'ru') lang = 'en';
-
-    document.documentElement.lang = lang;
-    document.title = META[lang].title;
-    var d = document.querySelector('meta[name="description"]');
-    if (d) d.setAttribute('content', META[lang].desc);
-
-    var blocks = document.querySelectorAll('[data-lang]');
-    for (var i = 0; i < blocks.length; i++) {
-      blocks[i].hidden = blocks[i].getAttribute('data-lang') !== lang;
-    }
-
-    var btns = document.querySelectorAll('.lang-btn');
-    for (var j = 0; j < btns.length; j++) {
-      btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-set-lang') === lang));
-    }
-
-    try { localStorage.setItem(KEY, lang); } catch (e) {}
-  }
-
-  function initial() {
-    var q = (location.search.match(/[?&]lang=(en|ru)\b/) || [])[1];
-    if (q) return q;
-    try {
-      var saved = localStorage.getItem(KEY);
-      if (saved === 'en' || saved === 'ru') return saved;
-    } catch (e) {}
-    var nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    return nav.indexOf('ru') === 0 ? 'ru' : 'en';
-  }
-
-  document.addEventListener('click', function (e) {
-    var t = e.target;
-    while (t && t !== document && !(t.classList && t.classList.contains('lang-btn'))) t = t.parentNode;
-    if (!t || t === document) return;
-    e.preventDefault();
-    var lang = t.getAttribute('data-set-lang');
-    apply(lang);
-    if (history.replaceState) {
-      history.replaceState(null, '', lang === 'ru' ? '?lang=ru' : location.pathname);
-    }
-  });
-
-  buildMailLinks();
-  apply(initial());
-})();
+var GH='https://github.com/mikeabakumoff/', AW='https://awelabs.io/demo/';
+var CASES=[
+ {id:'crm',img:'crm',demo:'https://mikeabakumoff.github.io/awelabs-crm-demo/',gh:GH+'awelabs-crm-demo',url:'crm.demo',
+  ru:{t:'CRM-экосистема для агентства недвижимости',s:'Python · FastAPI · Telegram · GPT · Mini App',task:'Агентство жило в таблицах и чатах: заявки терялись, никто не знал, на какой стадии сделка, договоры собирали руками.',
+   li:['Заявки из всех каналов падают в одну базу клиентов и объектов','Воронки продажи и аренды, задачи и напоминания агентам','Боты, автопостинг и AI-администратор работают от той же базы','Договоры собираются из данных сделки, роли и доступы по агентам'],ch:['0 потерянных заявок','Ответ клиенту 24/7','Договор в один клик']},
+  en:{t:'CRM ecosystem for a real estate agency',s:'Python · FastAPI · Telegram · GPT · Mini App',task:'The agency lived in spreadsheets and chats: leads got lost, nobody knew where a deal stood, contracts were assembled by hand.',
+   li:['Leads from every channel land in one base of clients and listings','Sales and rental pipelines, tasks and reminders for agents','Bots, autoposting and an AI admin run on the same database','Contracts are built from deal data, roles and access per agent'],ch:['0 lost leads','24/7 replies','One-click contracts']}},
+ {id:'asbuilt',img:'asbuilt',demo:AW+'asbuilt/',gh:GH+'awelabs-asbuilt-demo',url:'awelabs.io/demo/asbuilt',
+  ru:{t:'AI-ассистент инженера ПТО',s:'Python · Claude · Word/PDF · веб-сервис',task:'Инженер тратил дни на исполнительную документацию: акты, схемы, реестры, сверка дат и номеров по сотням листов.',
+   li:['Собирает разделы ИД из исходных файлов объекта','Сверяет даты и номера, находит расхождения и спрашивает решение','Формирует реестр и единый PDF, готовые файлы сразу на устройстве','Закрытый веб-сервис с логином для каждого инженера'],ch:['Дни → минуты','Сверка без ошибок','Готовый комплект PDF']},
+  en:{t:'AI assistant for site engineers',s:'Python · Claude · Word/PDF · web service',task:'An engineer spent days on as-built documentation: certificates, drawings, registers, checking dates and numbers across hundreds of sheets.',
+   li:['Builds document sections from the project source files','Cross-checks dates and numbers, flags mismatches and asks for a decision','Produces the register and a single PDF, files land on your device','Private web service with a login for every engineer'],ch:['Days → minutes','Error-free checks','Ready PDF set']}},
+ {id:'leads',img:'leads',demo:AW+'leads/',gh:GH+'awelabs-lead-qualifier-demo',url:'awelabs.io/demo/leads',
+  ru:{t:'Квалификатор лидов',s:'Python · GPT · Telegram · доски объявлений',task:'Много нецелевых обращений: пишут не по теме, торгуются ниже прайса, отнимают время у специалиста.',
+   li:['Бот выясняет задачу и бюджет до живого контакта','Твёрдо держит прайс и не уходит в торг','Специалисту в Telegram приходит только целевой лид с карточкой','Дневная статистика: сообщения, ответы, отсеянные'],ch:['Только целевые лиды','Прайс не ломается','Аналитика каждый день']},
+  en:{t:'Lead qualifier',s:'Python · GPT · Telegram · classifieds',task:'Too many off-target requests: off-topic messages, haggling below the rate card, wasted specialist time.',
+   li:['The bot finds out the task and budget before a human steps in','Holds the rate card and never haggles','Only qualified leads reach the specialist in Telegram, with a card','Daily stats: messages, replies, filtered out'],ch:['Qualified leads only','Rate card holds','Daily analytics']}},
+ {id:'radar',img:'radar',demo:AW+'radar/',gh:GH+'awelabs-order-radar-demo',url:'awelabs.io/demo/radar',
+  ru:{t:'Радар заказов в Telegram-чатах',s:'Python · Telethon · GPT · Telegram',task:'Заказы на разработку тонут в десятках чатов. Вручную их не отследить, а первым откликается тот, кто увидел раньше.',
+   li:['Круглосуточно читает десятки чатов по ключевым словам','GPT оценивает каждое совпадение: горячий, тёплый, холодный','Пишет черновик ответа под конкретный запрос','Сам находит новые релевантные группы'],ch:['24/7 мониторинг','Оценка за секунды','Готовый черновик']},
+  en:{t:'Order radar for Telegram chats',s:'Python · Telethon · GPT · Telegram',task:'Development requests drown in dozens of chats. You cannot track them by hand, and whoever sees one first gets the job.',
+   li:['Reads dozens of chats around the clock by keywords','GPT rates every match: hot, warm or cold','Drafts a reply tailored to the request','Discovers new relevant groups on its own'],ch:['24/7 monitoring','Scored in seconds','Ready draft']}},
+ {id:'content',img:'content',demo:AW+'content/',gh:GH+'awelabs-content-pipeline-demo',url:'awelabs.io/demo/content',
+  ru:{t:'AI-конвейер контента',s:'Python · Whisper · ffmpeg · GPT',task:'Из часового видео нужно сделать несколько коротких роликов: найти сильные моменты, нарезать, подписать. Вручную это день монтажа.',
+   li:['Расшифровывает речь и находит моменты с лучшим удержанием','Режет 9:16 и держит лицо говорящего в кадре','Субтитры по словам, хук на первые 3 секунды','Обложки, описания и хештеги для Reels, Shorts и TikTok'],ch:['3 ролика из часа','Без ручного монтажа','Любые темы']},
+  en:{t:'AI content pipeline',s:'Python · Whisper · ffmpeg · GPT',task:'An hour-long video has to become several short clips: find the strong moments, cut, caption. By hand that is a day of editing.',
+   li:['Transcribes speech and finds the moments with the best retention','Cuts 9:16 and keeps the speaker in frame','Word-level captions and a hook for the first 3 seconds','Covers, descriptions and hashtags for Reels, Shorts and TikTok'],ch:['3 clips from an hour','No manual editing','Any topic']}},
+ {id:'footcast',img:'footcast',demo:AW+'footcast/',gh:GH+'awelabs-footcast-demo',url:'awelabs.io/demo/footcast',
+  ru:{t:'FOOTCAST - ML-прогнозы на футбол',s:'Python · scikit-learn · Claude · Telegram',task:'Нужен автоматический канал с прогнозами: пять лиг, свежие новости о составах, публикация только уверенных прогнозов.',
+   li:['Ансамбль из 5 моделей на 14 000+ матчей за 8 сезонов','Claude с веб-поиском собирает новости о травмах и дисквалификациях','В канал уходят только прогнозы выше порога уверенности','После матча бот сверяет результат и пересчитывает точность'],ch:['52.8% против 44.0% базы','5 лиг','Самопроверка']},
+  en:{t:'FOOTCAST - ML football forecasts',s:'Python · scikit-learn · Claude · Telegram',task:'An automated forecast channel: five leagues, fresh lineup news, and only confident picks get published.',
+   li:['An ensemble of 5 models trained on 14,000+ matches over 8 seasons','Claude with web search gathers injury and suspension news','Only picks above the confidence threshold go to the channel','After the match the bot checks the result and updates accuracy'],ch:['52.8% vs 44.0% baseline','5 leagues','Self-checking']}}
+];
+var MORE=[
+ {ic:'{@}',l:GH+'awelabs-realty-bot',lt:'GitHub',ru:['AI-менеджер по недвижимости','Публичный демо-бот: подбирает объекты по запросу, отвечает на вопросы и передаёт горячего клиента агенту.'],en:['AI real estate manager','A public demo bot: matches listings to a request, answers questions and hands hot clients to an agent.']},
+ {ic:'[?]',l:GH+'Awe_Labs_quiz',lt:'GitHub',ru:['Квиз-ведущий для изучения тайского','Разбирает PDF уроков на слова и фразы, проводит квиз в группе, каждое задание проверяется по словарю курса.'],en:['Quiz host for learning Thai','Parses lesson PDFs into words and phrases, runs a group quiz, every task is checked against the course dictionary.']},
+ {ic:'[▤]',l:'https://t.me/awe_labs',lt:'Telegram',ru:['Автопостинг в Telegram-канал','GPT Vision отбирает лучшие фото, GPT пишет текст по данным объекта, публикация в канал и группу по расписанию.'],en:['Telegram channel autoposting','GPT Vision picks the best photos, GPT writes copy from listing data, posts go to the channel and group on schedule.']}
+];
+var EXP=[
+ {n:'Самокат',ne:'Samokat',y:'2022 - 2025',ru:['Старший инженер технической поддержки','Поддержка 2000+ сотрудников, команда из 6 инженеров в регионах, процессы в Jira.'],en:['Senior technical support engineer','Supported 2,000+ employees, led 6 engineers across regions, Jira processes.']},
+ {n:'SOKOLOV',ne:'SOKOLOV',y:'2021 - 2022',ru:['Специалист технической поддержки','Поддержка розничной сети, тикет-система, регламенты.'],en:['Technical support specialist','Retail chain support, ticket system, procedures.']},
+ {n:'ICL-КПО ВС',ne:'ICL',y:'2021',ru:['Инженер локальной поддержки','Торгово-банковская техника, сети, кассовое оборудование.'],en:['Field support engineer','Retail and banking hardware, networks, POS equipment.']},
+ {n:'Связной',ne:'Svyaznoy',y:'2019 - 2021',ru:['Инженер торгово-банковской техники','Диагностика и ремонт ПК, платёжных терминалов и ККТ по всей сети.'],en:['Retail and banking hardware engineer','Diagnostics and repair of PCs, payment terminals and cash registers across the chain.']}
+];
+var PRICE={ru:[['Простой бот: меню, автоответы, кнопки','от $35'],['Интеграция с CRM, API, Google Sheets','от $60'],['Бот приёма заявок и уведомлений','от $90'],['Автоматизация досок объявлений','от $120'],['Бот с GPT и квалификацией лидов','от $180'],['AI-решения под задачу','от $250'],['Полная автоматизация под ключ','от $300'],['Поддержка и сопровождение','от $35 / мес']],
+ en:[['Simple bot: menus, auto-replies, buttons','from $35'],['CRM, API, Google Sheets integration','from $60'],['Lead intake and notification bot','from $90'],['Classifieds automation','from $120'],['GPT bot with lead qualification','from $180'],['Custom AI solutions','from $250'],['Full end-to-end automation','from $300'],['Support and maintenance','from $35 / mo']]};
+var TECH=['Python','FastAPI','Django','aiogram','python-telegram-bot','Telethon','Telegram Mini Apps','Claude API','OpenAI API','GPT Vision','Whisper','scikit-learn','pandas','SQLite','PostgreSQL','REST / Webhooks','Google Sheets API','ffmpeg','nginx','Linux','systemd','GitHub Actions','JavaScript'];
+var T={
+ru:{n1:'кейсы',n2:'ещё',n3:'опыт',n4:'цены',n5:'контакты',tag:'python backend · автоматизация · AweLabs',
+who:'<b>Михаил Абакумов</b> · Python-инженер, основатель AweLabs',h1:'Рутину - коду.<br><em>Время - вам.</em>',
+lead:'Строю системы, которые работают вместо людей там, где люди устают: CRM-экосистемы, Telegram-боты и Mini Apps, AI-ассистенты, сборка документов, радары заказов, контент-конвейеры и ML-прогнозы. От идеи до сервера, без посредников.',
+cta1:'Написать в Telegram',cta2:'Смотреть кейсы',s1:'живых демо',s2:"системы на связи",s3:'языки работы',s4:'стоимость от',
+h_cases:'Кейсы с живыми демо',p_cases:'Каждый проект можно открыть и потрогать. Данные в демо выдуманные, логика - как в боевой системе.',
+h_more:'Ещё проекты',p_more:'Небольшие системы, которые тоже работают каждый день.',
+h_exp:'Опыт',p_exp:'До разработки - годы в технической поддержке. Поэтому я делаю системы, которые не ломаются и понятны людям.',
+h_price:'Цены',p_price:'Ориентиры по стоимости. Точную цену назову после короткого разговора о задаче.',price_note:'// первая консультация бесплатно · оплата этапами',
+h_stack:'Технологии',h_contact:'Обсудим задачу?',p_contact:'Первая консультация бесплатно. Опишите, что отнимает время, и я предложу, как это автоматизировать.',
+demo:'Открыть демо',ft:'Михаил Абакумов · Python-инженер · работаю удалённо'},
+en:{n1:'cases',n2:'more',n3:'experience',n4:'pricing',n5:'contact',tag:'python backend · automation · AweLabs',
+who:'<b>Mikhail Abakumov</b> · Python engineer, founder of AweLabs',h1:'Routine to code.<br><em>Time to you.</em>',
+lead:'I build systems that take over where people get tired: CRM ecosystems, Telegram bots and Mini Apps, AI assistants, document builders, order radars, content pipelines and ML forecasts. From idea to server, no middlemen.',
+cta1:'Message on Telegram',cta2:'See case studies',s1:'live demos',s2:"systems online",s3:'working languages',s4:'starting price',
+h_cases:'Case studies with live demos',p_cases:'Every project can be opened and tried. Demo data is made up, the logic is the same as in production.',
+h_more:'More projects',p_more:'Smaller systems that also run every day.',
+h_exp:'Experience',p_exp:'Before development - years in technical support. That is why I build systems that do not break and make sense to people.',
+h_price:'Pricing',p_price:'Ballpark figures. I will name the exact price after a short call about the task.',price_note:'// first consultation is free · pay by milestones',
+h_stack:'Stack',h_contact:'Let\'s talk about your task',p_contact:'The first consultation is free. Tell me what eats your time, and I will suggest how to automate it.',
+demo:'Open demo',ft:'Mikhail Abakumov · Python engineer · working remotely'}};
+var L='ru';try{L=localStorage.getItem('pf_lang')||((navigator.language||'').slice(0,2)==='ru'?'ru':'en')}catch(e){}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function render(){var t=T[L];document.documentElement.lang=L;
+ document.querySelectorAll('[data-i]').forEach(function(e){e.textContent=t[e.dataset.i]});
+ document.querySelectorAll('[data-html]').forEach(function(e){e.innerHTML=t[e.dataset.html]});
+ document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.set===L)});
+ document.getElementById('caseList').innerHTML=CASES.map(function(c,i){var k=c[L],img='img/'+c.img+'-'+(c.img==='crm'?'ru':L)+'.webp';
+  return '<article class="case rv"><a class="shot" href="'+c.demo+'" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>'+c.url+'</span></div><img src="'+img+'" alt="'+esc(k.t)+'" loading="lazy" width="1200" height="750"></a>'+
+  '<div><div class="num">'+String(i+1).padStart(2,'0')+' <em>/ '+String(CASES.length).padStart(2,'0')+'</em></div><h3>'+esc(k.t)+'</h3><div class="stack">'+esc(k.s)+'</div><p class="task">'+esc(k.task)+'</p><ul>'+k.li.map(function(x){return'<li>'+esc(x)+'</li>'}).join('')+'</ul>'+
+  '<div class="chips">'+k.ch.map(function(x){return'<span class="chip">'+esc(x)+'</span>'}).join('')+'</div>'+
+  '<div class="links"><a class="btn demo sm" href="'+c.demo+'" target="_blank" rel="noopener">'+t.demo+' ↗</a><a class="btn s sm" href="'+c.gh+'" target="_blank" rel="noopener">GitHub</a></div></div></article>'}).join('');
+ document.getElementById('moreList').innerHTML=MORE.map(function(m){var k=m[L];return'<div class="card rv"><span class="ic">'+m.ic+'</span><h4>'+esc(k[0])+'</h4><p>'+esc(k[1])+'</p><a class="l" href="'+m.l+'" target="_blank" rel="noopener">'+m.lt+' ↗</a></div>'}).join('');
+ document.getElementById('expList').innerHTML=EXP.map(function(j){var k=j[L];return'<div class="job rv"><div class="t"><h4>'+esc(L==='ru'?j.n:j.ne)+'</h4><span class="y">'+j.y+'</span></div><div class="r">'+esc(k[0])+'</div><p>'+esc(k[1])+'</p></div>'}).join('');
+ document.getElementById('priceList').innerHTML=PRICE[L].map(function(r){return'<div class="row"><span>'+esc(r[0])+'</span><b>'+r[1]+'</b></div>'}).join('');
+ document.getElementById('tech').innerHTML=TECH.map(function(x){return'<span>'+x+'</span>'}).join('');
+ observe()}
+var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08}):null;
+function observe(){document.querySelectorAll('.rv:not(.in)').forEach(function(e){io?io.observe(e):e.classList.add('in')})}
+document.querySelectorAll('.lang button').forEach(function(b){b.onclick=function(){L=b.dataset.set;try{localStorage.setItem('pf_lang',L)}catch(e){}render()}});
+document.querySelectorAll('.js-mail').forEach(function(a){var m=a.dataset.p1+'.'+a.dataset.p2+'@'+a.dataset.p3+'.'+a.dataset.p4;a.href='mailto:'+m;a.querySelector('span').textContent=m});
+render();
 </script>
-
 </body>
 </html>
