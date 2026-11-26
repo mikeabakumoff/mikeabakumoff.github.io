@@ -6,7 +6,7 @@
 <title>Mikhail Abakumov - Python engineer, AweLabs</title>
 <meta name="description" content="Mikhail Abakumov - Python engineer and founder of AweLabs. CRM ecosystems, Telegram bots and Mini Apps, AI assistants, document automation, order radars, content pipelines and ML forecasts.">
 <meta property="og:title" content="Mikhail Abakumov - routine to code, time to you">
-<meta property="og:description" content="Python engineer, founder of AweLabs. Live demos of 6 automation products.">
+<meta property="og:description" content="Python engineer, founder of AweLabs. Live demos of 8 automation products.">
 <meta property="og:image" content="https://mikeabakumoff.github.io/img/crm-ru.webp">
 <meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0b'/%3E%3Ctext x='12' y='44' font-family='monospace' font-size='34' fill='%23e8f0e8'%3Em%3C/text%3E%3Crect x='40' y='20' width='12' height='26' fill='%2300ff41'/%3E%3C/svg%3E">
@@ -125,7 +125,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--g)}
     <a class="btn s" href="https://awelabs.io" target="_blank" rel="noopener">awelabs.io ↗</a>
   </div>
   <div class="stats">
-    <div><b>6</b><span data-i="s1"></span></div>
+    <div><b>8</b><span data-i="s1"></span></div>
     <div><b>24<em>/</em>7</b><span data-i="s2"></span></div>
     <div><b>EN·RU·TH</b><span data-i="s3"></span></div>
     <div><b>$35</b><span data-i="s4"></span></div>
@@ -184,6 +184,11 @@ var CASES=[
    li:['Заявки из всех каналов падают в одну базу клиентов и объектов','Воронки продажи и аренды, задачи и напоминания агентам','Боты, автопостинг и AI-администратор работают от той же базы','Договоры собираются из данных сделки, роли и доступы по агентам'],ch:['0 потерянных заявок','Ответ клиенту 24/7','Договор в один клик']},
   en:{t:'CRM ecosystem for a real estate agency',s:'Python · FastAPI · Telegram · GPT · Mini App',task:'The agency lived in spreadsheets and chats: leads got lost, nobody knew where a deal stood, contracts were assembled by hand.',
    li:['Leads from every channel land in one base of clients and listings','Sales and rental pipelines, tasks and reminders for agents','Bots, autoposting and an AI admin run on the same database','Contracts are built from deal data, roles and access per agent'],ch:['0 lost leads','24/7 replies','One-click contracts']}},
+ {id:'realty',img:'realty',demo:AW+'realty/',url:'awelabs.io/demo/realty',
+  ru:{t:'AI-менеджер агентства недвижимости в Telegram',s:'Python · Telethon · Claude · Telegram',task:'Команда агентства каждый день спрашивала одно и то же: цены, свободные даты, статусы. Витрину объектов в группе вели руками, спам вычищали тоже руками.',
+   li:['Живой Telegram-аккаунт отвечает команде по базе объектов: цены, брони, свободные даты','Ведёт витрину в группе: 12 тем, 134 объявления, 1 323 фото с водяным знаком','Сменилась цена или статус - пост обновляется за 5 минут','Чистит спам и ссылки, ищет нужное по чатам и маркетплейсам'],ch:['Ответ команде 24/7','Витрина без ручной работы','Антиспам']},
+  en:{t:'AI manager for a real estate agency in Telegram',s:'Python · Telethon · Claude · Telegram',task:'The agency team asked the same questions every day: prices, free dates, statuses. The listing showcase in the group was run by hand, and so was spam cleanup.',
+   li:['A real Telegram account answers the team from the property database: prices, bookings, free dates','Runs the group showcase: 12 topics, 134 listings, 1,323 watermarked photos','Price or status changed - the post updates within 5 minutes','Removes spam and links, searches chats and marketplaces'],ch:['24/7 team replies','Hands-free showcase','Anti-spam']}},
  {id:'asbuilt',img:'asbuilt',demo:AW+'asbuilt/',gh:GH+'awelabs-asbuilt-demo',url:'awelabs.io/demo/asbuilt',
   ru:{t:'AI-ассистент инженера ПТО',s:'Python · Claude · Word/PDF · веб-сервис',task:'Инженер тратил дни на исполнительную документацию: акты, схемы, реестры, сверка дат и номеров по сотням листов.',
    li:['Собирает разделы ИД из исходных файлов объекта','Сверяет даты и номера, находит расхождения и спрашивает решение','Формирует реестр и единый PDF, готовые файлы сразу на устройстве','Закрытый веб-сервис с логином для каждого инженера'],ch:['Дни → минуты','Сверка без ошибок','Готовый комплект PDF']},
@@ -206,9 +211,14 @@ var CASES=[
    li:['Transcribes speech and finds the moments with the best retention','Cuts 9:16 and keeps the speaker in frame','Word-level captions and a hook for the first 3 seconds','Covers, descriptions and hashtags for Reels, Shorts and TikTok'],ch:['3 clips from an hour','No manual editing','Any topic']}},
  {id:'footcast',img:'footcast',demo:AW+'footcast/',gh:GH+'awelabs-footcast-demo',url:'awelabs.io/demo/footcast',
   ru:{t:'FOOTCAST - ML-прогнозы на футбол',s:'Python · scikit-learn · Claude · Telegram',task:'Нужен автоматический канал с прогнозами: пять лиг, свежие новости о составах, публикация только уверенных прогнозов.',
-   li:['Ансамбль из 5 моделей на 14 000+ матчей за 8 сезонов','Claude с веб-поиском собирает новости о травмах и дисквалификациях','В канал уходят только прогнозы выше порога уверенности','После матча бот сверяет результат и пересчитывает точность'],ch:['52.8% против 44.0% базы','5 лиг','Самопроверка']},
+   li:['7 моделей на 17 000+ матчей: 8 сезонов топ-5 лиг и еврокубки','Claude с веб-поиском собирает новости о травмах и дисквалификациях','В канал уходят только прогнозы выше порога уверенности','После матча бот сверяет результат и пересчитывает точность'],ch:['52.8% против 44.0% базы','5 лиг','Самопроверка']},
   en:{t:'FOOTCAST - ML football forecasts',s:'Python · scikit-learn · Claude · Telegram',task:'An automated forecast channel: five leagues, fresh lineup news, and only confident picks get published.',
-   li:['An ensemble of 5 models trained on 14,000+ matches over 8 seasons','Claude with web search gathers injury and suspension news','Only picks above the confidence threshold go to the channel','After the match the bot checks the result and updates accuracy'],ch:['52.8% vs 44.0% baseline','5 leagues','Self-checking']}}
+   li:['7 models trained on 17,000+ matches: 8 seasons of the top 5 leagues plus European cups','Claude with web search gathers injury and suspension news','Only picks above the confidence threshold go to the channel','After the match the bot checks the result and updates accuracy'],ch:['52.8% vs 44.0% baseline','5 leagues','Self-checking']}},
+ {id:'companion',img:'companion',demo:AW+'companion/',url:'awelabs.io/demo/companion',
+  ru:{t:'Персональный AI-ассистент',s:'Python · Claude · TTS/STT · Telegram',task:'Нужен собеседник в Telegram, который помнит важное, понимает голосовые и сам пишет первым, а не просто отвечает на вопросы.',
+   li:['Долгая память: факты, вся переписка и ежедневные сводки','Голосовые в обе стороны и звонки','Инициатива: пишет первым, напоминает, держит расписание','Характер в одном файле, правится без перезапуска. Не замена психологу'],ch:['Помнит важное','Голос','Пишет первым']},
+  en:{t:'Personal AI assistant',s:'Python · Claude · TTS/STT · Telegram',task:'A Telegram companion that remembers what matters, understands voice notes and reaches out first, instead of only answering questions.',
+   li:['Long-term memory: facts, full chat history and daily summaries','Voice messages both ways, plus calls','Initiative: writes first, reminds and keeps schedules','Character in a single file, edited without restarts. Not a replacement for a therapist'],ch:['Remembers','Voice','Writes first']}}
 ];
 var MORE=[
  {ic:'{@}',l:GH+'awelabs-realty-bot',lt:'GitHub',ru:['AI-менеджер по недвижимости','Публичный демо-бот: подбирает объекты по запросу, отвечает на вопросы и передаёт горячего клиента агенту.'],en:['AI real estate manager','A public demo bot: matches listings to a request, answers questions and hands hot clients to an agent.']},
@@ -255,7 +265,7 @@ function render(){var t=T[L];document.documentElement.lang=L;
   return '<article class="case rv"><a class="shot" href="'+c.demo+'" target="_blank" rel="noopener"><div class="bar"><i></i><i></i><i></i><span>'+c.url+'</span></div><img src="'+img+'" alt="'+esc(k.t)+'" loading="lazy" width="1200" height="750"></a>'+
   '<div><div class="num">'+String(i+1).padStart(2,'0')+' <em>/ '+String(CASES.length).padStart(2,'0')+'</em></div><h3>'+esc(k.t)+'</h3><div class="stack">'+esc(k.s)+'</div><p class="task">'+esc(k.task)+'</p><ul>'+k.li.map(function(x){return'<li>'+esc(x)+'</li>'}).join('')+'</ul>'+
   '<div class="chips">'+k.ch.map(function(x){return'<span class="chip">'+esc(x)+'</span>'}).join('')+'</div>'+
-  '<div class="links"><a class="btn demo sm" href="'+c.demo+'" target="_blank" rel="noopener">'+t.demo+' ↗</a><a class="btn s sm" href="'+c.gh+'" target="_blank" rel="noopener">GitHub</a></div></div></article>'}).join('');
+  '<div class="links"><a class="btn demo sm" href="'+c.demo+'" target="_blank" rel="noopener">'+t.demo+' ↗</a>'+(c.gh?'<a class="btn s sm" href="'+c.gh+'" target="_blank" rel="noopener">GitHub</a>':'')+'</div></div></article>'}).join('');
  document.getElementById('moreList').innerHTML=MORE.map(function(m){var k=m[L];return'<div class="card rv"><span class="ic">'+m.ic+'</span><h4>'+esc(k[0])+'</h4><p>'+esc(k[1])+'</p><a class="l" href="'+m.l+'" target="_blank" rel="noopener">'+m.lt+' ↗</a></div>'}).join('');
  document.getElementById('expList').innerHTML=EXP.map(function(j){var k=j[L];return'<div class="job rv"><div class="t"><h4>'+esc(L==='ru'?j.n:j.ne)+'</h4><span class="y">'+j.y+'</span></div><div class="r">'+esc(k[0])+'</div><p>'+esc(k[1])+'</p></div>'}).join('');
  document.getElementById('priceList').innerHTML=PRICE[L].map(function(r){return'<div class="row"><span>'+esc(r[0])+'</span><b>'+r[1]+'</b></div>'}).join('');
