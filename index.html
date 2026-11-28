@@ -128,7 +128,7 @@ footer a{color:var(--muted)}footer a:hover{color:var(--g)}
     <div><b>8</b><span data-i="s1"></span></div>
     <div><b>24<em>/</em>7</b><span data-i="s2"></span></div>
     <div><b>EN·RU·TH</b><span data-i="s3"></span></div>
-    <div><b>$35</b><span data-i="s4"></span></div>
+    <div><b>$300</b><span data-i="s4"></span></div>
   </div>
 </div>
 
@@ -231,8 +231,8 @@ var EXP=[
  {n:'ICL-КПО ВС',ne:'ICL',y:'2021',ru:['Инженер локальной поддержки','Торгово-банковская техника, сети, кассовое оборудование.'],en:['Field support engineer','Retail and banking hardware, networks, POS equipment.']},
  {n:'Связной',ne:'Svyaznoy',y:'2019 - 2021',ru:['Инженер торгово-банковской техники','Диагностика и ремонт ПК, платёжных терминалов и ККТ по всей сети.'],en:['Retail and banking hardware engineer','Diagnostics and repair of PCs, payment terminals and cash registers across the chain.']}
 ];
-var PRICE={ru:[['Простой бот: меню, автоответы, кнопки','от $35'],['Интеграция с CRM, API, Google Sheets','от $60'],['Бот приёма заявок и уведомлений','от $90'],['Автоматизация досок объявлений','от $120'],['Бот с GPT и квалификацией лидов','от $180'],['AI-решения под задачу','от $250'],['Полная автоматизация под ключ','от $300'],['Поддержка и сопровождение','от $35 / мес']],
- en:[['Simple bot: menus, auto-replies, buttons','from $35'],['CRM, API, Google Sheets integration','from $60'],['Lead intake and notification bot','from $90'],['Classifieds automation','from $120'],['GPT bot with lead qualification','from $180'],['Custom AI solutions','from $250'],['Full end-to-end automation','from $300'],['Support and maintenance','from $35 / mo']]};
+var PRICE={ru:[['Простой Telegram-бот','от $300 + $30/мес'],['Интеграции: Sheets, CRM, API','от $500 (+ $50/мес на нашем сервере)'],['Автоответчик для площадок + сопровождение нейросети','от $600 + $60/мес'],['AI-менеджер заявок + сопровождение нейросети','от $900 + $90/мес'],['Радар заказов + сопровождение нейросети','от $400 + $50/мес'],['Контент-ферма: нарезка / генерация / обе + сопровождение нейросети','от $300 / $500 / $700 + от $250/мес'],['AI-компаньон + сопровождение нейросети','от $300'],['FOOTCAST - AI-прогнозы на футбол + сопровождение нейросети','от $1 200 + $200/мес'],['AI-менеджер агентства недвижимости + сопровождение нейросети','от $2 000 + $200/мес'],['AI-ассистент ПТО / документы + сопровождение нейросети','от $2 500 + $150/мес за объект'],['CRM-экосистема','от $3 000 + $200/мес'],['Поддержка и доработки','$150/мес']],
+ en:[['Simple Telegram bot','from $300 + $30/mo'],['Integrations: Sheets, CRM, API','from $500 (+ $50/mo on our server)'],['Marketplace autoresponder + AI support','from $600 + $60/mo'],['AI lead manager + AI support','from $900 + $90/mo'],['Order radar + AI support','from $400 + $50/mo'],['Content farm: clipping / generation / both + AI support','from $300 / $500 / $700 + from $250/mo'],['AI companion + AI support','from $300'],['FOOTCAST - AI football predictions + AI support','from $1,200 + $200/mo'],['AI manager for a real estate agency + AI support','from $2,000 + $200/mo'],['AI assistant for construction documents + AI support','from $2,500 + $150/mo per site'],['CRM ecosystem','from $3,000 + $200/mo'],['Support and improvements','$150/mo']]};
 var TECH=['Python','FastAPI','Django','aiogram','python-telegram-bot','Telethon','Telegram Mini Apps','Claude API','OpenAI API','GPT Vision','Whisper','scikit-learn','pandas','SQLite','PostgreSQL','REST / Webhooks','Google Sheets API','ffmpeg','nginx','Linux','systemd','GitHub Actions','JavaScript'];
 var T={
 ru:{n1:'кейсы',n2:'ещё',n3:'опыт',n4:'цены',n5:'контакты',tag:'python backend · автоматизация · AweLabs',
@@ -242,7 +242,7 @@ cta1:'Написать в Telegram',cta2:'Смотреть кейсы',s1:'жи�
 h_cases:'Кейсы с живыми демо',p_cases:'Каждый проект можно открыть и потрогать. Данные в демо выдуманные, логика - как в боевой системе.',
 h_more:'Ещё проекты',p_more:'Небольшие системы, которые тоже работают каждый день.',
 h_exp:'Опыт',p_exp:'До разработки - годы в технической поддержке. Поэтому я делаю системы, которые не ломаются и понятны людям.',
-h_price:'Цены',p_price:'Ориентиры по стоимости. Точную цену назову после короткого разговора о задаче.',price_note:'// первая консультация бесплатно · оплата этапами',
+h_price:'Цены',p_price:'Ориентиры по стоимости. Все цены - «от», за базовый объём; точную цену назову, когда разберу задачу в переписке.',price_note:'// первая консультация бесплатно · оплата этапами · сопровождение нейросети - оплата работы ИИ по факту использования + 15% за настройку, мониторинг и поддержку, счёт раз в месяц с расшифровкой',
 h_stack:'Технологии',h_contact:'Обсудим задачу?',p_contact:'Первая консультация бесплатно. Опишите, что отнимает время, и я предложу, как это автоматизировать.',
 demo:'Открыть демо',ft:'Михаил Абакумов · Python-инженер · работаю удалённо'},
 en:{n1:'cases',n2:'more',n3:'experience',n4:'pricing',n5:'contact',tag:'python backend · automation · AweLabs',
@@ -252,7 +252,7 @@ cta1:'Message on Telegram',cta2:'See case studies',s1:'live demos',s2:"systems o
 h_cases:'Case studies with live demos',p_cases:'Every project can be opened and tried. Demo data is made up, the logic is the same as in production.',
 h_more:'More projects',p_more:'Smaller systems that also run every day.',
 h_exp:'Experience',p_exp:'Before development - years in technical support. That is why I build systems that do not break and make sense to people.',
-h_price:'Pricing',p_price:'Ballpark figures. I will name the exact price after a short call about the task.',price_note:'// first consultation is free · pay by milestones',
+h_price:'Pricing',p_price:'All prices are starting prices for the base scope; I will name the exact price once I understand the task in chat.',price_note:'// first consultation is free · pay by milestones · AI support - AI usage billed at actual cost + 15% for tuning, monitoring and support, monthly invoice with a breakdown',
 h_stack:'Stack',h_contact:'Let\'s talk about your task',p_contact:'The first consultation is free. Tell me what eats your time, and I will suggest how to automate it.',
 demo:'Open demo',ft:'Mikhail Abakumov · Python engineer · working remotely'}};
 var L='ru';try{L=localStorage.getItem('pf_lang')||((navigator.language||'').slice(0,2)==='ru'?'ru':'en')}catch(e){}
